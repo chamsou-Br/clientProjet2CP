@@ -5,9 +5,581 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-image: url('./images/site-background.jpg'); 
+  background-position: center;
+  background-size: cover;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+/* ------------------------------------------- */
+            /* Acceil screen */
+/* ------------------------------------------- */
+
+.container-fluid {
+  background-image: url('./images/site-background.jpg'); 
+}
+.card-body{
+  background-image: url('./images/site-background.jpg'); 
+}
+.scrollTop {
+  position: fixed;
+  width: 3rem;
+  height: 3rem;
+  background-color: #00000099;
+  right: 3rem;
+  top: 40rem;
+  z-index: 10;
+  border-radius: 1rem;
+  text-align: center;
+  align-items: center;
+  display: none;
+  
+}
+.scrollTop .icon {
+  margin-top: 0.8rem;
+}
+.scrollTop.active {
+  display: block;
+} 
+.scrollTop:hover {
+  background-color: #00000055;
+}
+/* ------------------------------------------- */
+            /* Login screen */
+/* ------------------------------------------- */
+.loginScreen {
+  background-image: url('./images/site-background.jpg'); 
+}
+
+.loginContainer {
+box-shadow: 5px 5px 2px 2px #000;
+}
+
+.fonctionRadio {
+   background-color: #FFF;
+   border-radius: 2rem;
+   margin-bottom: 0.7rem;
+}
+.fonctionRadio input {
+  margin-right: 1rem;
+}
+.fonctionRadio .misajourFonction {
+  margin-top: 0.4rem;
+  margin-left: 1.5rem;
+}
+.fonctionRadio .consultationFonction {
+  margin-left: 1.5rem;
+}
+
+.errLogin {
+  color:crimson ;
+  font-size: 1rem;
+  font-weight: 600;
+  margin-left: 0.4rem;
+}
+
+
+/* ------------------------------------------- */
+            /* Registre Screen */
+/* ------------------------------------------- */
+
+.seriveRadio {
+  margin-left: 1.5rem;
+  line-height: 1.3rem;
+} 
+
+/* ------------------------------------------- */
+            /* commande Screen */
+/* ------------------------------------------- */
+
+
+.commande #main{
+  width: 65rem;
+ padding-bottom: 0.8rem;
+  margin: auto;
+  margin-top: 2rem;
+  display: block;
+  background-image: url('./images/site-background.jpg'); 
+    border-radius: 15px;
+box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3), 0 6px 20px 0 rgba(0, 0, 0, 0.25);
+  }
+  .commande #form{
+      margin: 0rem auto;
+   }
+
+.commande  h3 {
+  letter-spacing: 2px;
+  word-spacing: 3px;
+  font-size: 180%;
+  color: #191970;
+  font-weight: bold
+}
+.commande .div{
+  width: 30%;
+  display: inline-block;
+  margin: 1rem 0 0 1rem;
+}
+.commande #tear{
+  margin: 0.5rem 10rem 0 10rem;
+}
+
+.commande input[type=date]{
+  width: 100%;
+  border: 1px solid #DCDCDC;
+  border-radius: 3px;
+  padding: 2% 2%;
+  box-sizing: border-box;
+  background-color: #DCDCDC;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  font-size: 100%;
+}
+.commande input[type=text]{
+width: 100%;
+border: 1px solid #DCDCDC;
+border-radius: 3px;
+padding: 2% 2%;
+box-sizing: border-box;
+background-color: #DCDCDC;
+box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+font-size: 100%;
+}
+.commande label{
+margin: 0.7rem 0.2rem;
+color: #191970;
+font-size: 80%;
+float: left;
+font-weight: bold;
+
+}
+.commande textarea {
+width: 100%;
+padding: 1rem 1rem;
+box-sizing: border-box;
+border-radius: 10px;
+background-color: #DCDCDC;
+box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+font-size: 100%;
+resize: none;
+}
+.commande input[type=submit]{
+background-color: #191970;
+border: none;
+width: 7rem;
+height: 2.7rem;
+float: right;
+color: white;
+padding: 0.8% 1%;
+text-decoration: none;
+cursor: pointer;
+margin: 2rem 3rem 2rem 3rem;
+border-radius: 20px;
+box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.commande #bottuns{
+ margin-right: 2.5rem;
+  float: right;
+  
+ }
+
+
+ /* ------------------------------------------- */
+            /* budget Screen */
+/* ------------------------------------------- */
+
+.budget #main{
+  justify-content: center ;
+  padding-bottom: 2.5rem;   
+  margin-top: 2rem;
+  display: flex;
+  background-image: url('./images/site-background.jpg'); 
+  border-radius: 15px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3), 0 6px 20px 0 rgba(0, 0, 0, 0.25);
+}
+
+.budget #form{
+  margin: 0rem auto;
+}
+.budget h3 {
+  letter-spacing: 2px;
+  word-spacing: 3px;
+  font-size: 180%;
+  color: #191970;
+  font-weight: bold
+}
+.budget .div{
+  width: 30%;
+  display: inline-block;
+  margin: 1rem 0 0 1rem;
+}
+.budget #tear{
+   margin: 0.5rem 10rem 0rem 10rem;
+}
+
+.budget #motifs{
+  margin: 1rem auto 0 1rem;
+  display: inline-block;
+  width:62%;
+}
+
+.budget input[type=date]{
+  width: 100%;
+  border: 1px solid #DCDCDC;
+  border-radius: 3px;
+  padding: 2% 2%;
+  box-sizing: border-box;
+  background-color: #DCDCDC;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  font-size: 100%;
+}
+.budget input[type=text]{
+  width: 100%;
+  border: 1px solid #DCDCDC;
+  border-radius: 3px;
+  padding: 2% 2%;
+  box-sizing: border-box;
+  background-color: #DCDCDC;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  font-size: 100%;
+}
+
+.budget label{
+  margin: 0.7rem 0.2rem;
+  color: #191970;
+  font-size: 80%;
+  float: left;
+  font-weight: bold;
+}
+
+.budget textarea {
+  width: 100%;
+  padding: 1rem 1rem;
+  box-sizing: border-box;
+  border-radius: 10px;
+  background-color: #DCDCDC;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  font-size: 100%;
+  resize: none;
+}
+
+.budget input[type=submit]{
+  background-color: #191970;
+  border: none;
+  width: 7rem;
+  height: 2.7rem;
+  float: right;
+  color: white;
+  padding: 0.8% 1%;
+  text-decoration: none;
+  cursor: pointer;
+  margin: 2rem 3rem 2rem 3rem;
+  border-radius: 20px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.budget #bottuns{
+  margin-right: 2.5rem;
+   float: right;
+   
+  }
+
+
+ /* ------------------------------------------- */
+            /* compatable Screen */
+/* ------------------------------------------- */
+
+.compatable #main{
+  justify-content: center ;
+  padding-bottom: 2.5rem;   
+  margin-top: 2rem;
+  display: flex;
+  background-image: url('./images/site-background.jpg'); 
+  border-radius: 15px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3), 0 6px 20px 0 rgba(0, 0, 0, 0.25);
+}
+
+.compatable  #form{
+    margin: 0rem auto;
+}
+
+.compatable h3 {
+  letter-spacing: 2px;
+  word-spacing: 3px;
+  font-size: 180%;
+  color: #191970;
+  font-weight: bold
+}
+
+.compatable .div{
+  width: 30%;
+  display: inline-block;
+  margin: 1rem 0 0 1rem;
+}
+
+.compatable #tear{
+  margin: 0.5rem 10rem 0rem 10rem;
+}
+
+.compatable #motifs{
+  margin: 1rem auto 0 1rem;
+  display: inline-block;
+  width:62%;
+}
+
+.compatable input[type=date]{
+  width: 100%;
+  border: 1px solid #DCDCDC;
+  border-radius: 3px;
+  padding: 2% 2%;
+  box-sizing: border-box;
+  background-color: #DCDCDC;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  font-size: 100%;
+}
+
+.compatable input[type=text]{
+  width: 100%;
+  border: 1px solid #DCDCDC;
+  border-radius: 3px;
+  padding: 2% 2%;
+  box-sizing: border-box;
+  background-color: #DCDCDC;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  font-size: 100%;
+}
+
+.compatable label{
+  margin: 0.7rem 0.2rem;
+  color: #191970;
+  font-size: 80%;
+  float: left;
+  font-weight: bold;
+}
+
+.compatable textarea {
+  width: 100%;
+  padding: 1rem 1rem;
+  box-sizing: border-box;
+  border-radius: 10px;
+  background-color: #DCDCDC;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  font-size: 100%;
+  resize: none;
+}
+
+.compatable input[type=submit]{
+  background-color: #191970;
+  border: none;
+  width: 7rem;
+  height: 2.7rem;
+  float: right;
+  color: white;
+  padding: 0.8% 1%;
+  text-decoration: none;
+  cursor: pointer;
+  margin: 2rem 3rem 2rem 3rem;
+  border-radius: 20px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.compatable #bottuns{
+  margin-right: 2.5rem;
+   float: right;
+   
+  }
+
+
+ /* ------------------------------------------- */
+            /* marche Screen */
+/* ------------------------------------------- */
+
+.marche #main{
+  justify-content: center ;
+  padding-bottom: 2.5rem;   
+  margin-top: 2rem;
+  display: flex;
+  background-image: url('./images/site-background.jpg'); 
+  border-radius: 15px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3), 0 6px 20px 0 rgba(0, 0, 0, 0.25);
+}
+
+.marche #form{
+  margin: 0rem auto;
+}
+
+.marche h3 {
+  letter-spacing: 2px;
+  word-spacing: 3px;
+  font-size: 180%;
+  color: #191970;
+  font-weight: bold
+}
+.marche .div{
+  width: 30%;
+  display: inline-block;
+  margin: 1rem 0 0 1rem;
+}
+
+.marche #tear{
+  margin: 0.5rem 10rem 0 10rem;
+}
+
+.marche input[type=date], select{
+  width: 100%;
+  border: 1px solid #DCDCDC;
+  border-radius: 3px;
+  padding: 2% 2%;
+  box-sizing: border-box;
+  background-color: #DCDCDC;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  font-size: 100%;
+}
+
+.marche input[type=text]{
+  width: 100%;
+  border: 1px solid #DCDCDC;
+  border-radius: 3px;
+  padding: 2% 2%;
+  box-sizing: border-box;
+  background-color: #DCDCDC;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  font-size: 100%;
+}
+.marche label{
+  margin: 1rem 0 0  0;
+  color: #191970;
+  font-size: 80%;
+  float: left;
+  font-weight: bold;
+}
+
+.marche textarea {
+  width: 100%;
+  padding: 1rem 1rem;
+  box-sizing: border-box;
+  border-radius: 10px;
+  background-color: #DCDCDC;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  font-size: 100%;
+  resize: none;
+}
+
+.marche input[type=submit]{
+  background-color: #191970;
+  border: none;
+  width: 8.5rem;
+  color: white;
+  padding: 1% 1%;
+  text-decoration: none;
+  cursor: pointer;
+  margin: 2rem 0 2rem 2rem;
+  border-radius: 20px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.marche #bottuns{
+  margin-right: 2rem;
+  float: right;
+}
+
+
+
+ /* ------------------------------------------- */
+            /* Nouveau Screen */
+/* ------------------------------------------- */ 
+
+
+.nouveau #form {
+  justify-content: center ;
+  padding-bottom: 2.5rem;   
+  margin : auto;
+  display: flex;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3), 0 6px 20px 0 rgba(0, 0, 0, 0.25);
+}
+
+.nouveau h3 {
+  letter-spacing: 2px;
+  word-spacing: 3px;
+  font-size: 180%;
+  color: #191970;
+  font-weight: bold
+}
+
+.nouveau .div{
+  display: inline-block;
+  margin: 1rem 0 0 1rem;
+}
+
+.nouveau #tear{ 
+  margin: 0.5rem 10rem 0 10rem;
+}
+
+.nouveau input[type=date] ,select{
+  width:    17rem ;
+  border: 1px solid #DCDCDC;
+  border-radius: 3px;
+   padding: 2% 2%;
+  box-sizing: border-box;
+  background-color: #DCDCDC;
+   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  font-size: 100%;
+}
+
+.nouveau input[type=text]{
+  width: 17rem ;
+  border: 1px solid #DCDCDC;
+  border-radius: 3px;
+  padding: 2% 2%;
+  box-sizing: border-box;
+  background-color: #DCDCDC;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  font-size: 100%;
+}
+
+@media screen and (max-width : 500px) {
+  .nouveau input[type=text],.nouveau input[type=date] ,select {
+       width: 10rem ;
+  }
+}
+
+
+.nouveau label{
+  margin: 1rem 0 0  0;
+  color: #191970;
+  font-size: 80%;
+  float: left;
+  font-weight: bold;
+}
+
+.nouveau textarea {
+  width: 100%;
+  padding: 1rem 1rem;
+  box-sizing: border-box;
+  border-radius: 10px;
+  background-color: #DCDCDC;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  font-size: 100%;
+  resize: none;
+}
+
+.nouveau input[type=submit]{
+  background-color: #191970;
+  border: none;
+  width: 8.5rem;
+  color: white;
+  font-weight: 600;
+  letter-spacing: 0.3rem;
+  padding: 3% 4%;
+  text-decoration: none;
+  cursor: pointer;
+  margin: 2rem 0 2rem 2rem;
+  border-radius: 20px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.nouveau #bottuns{
+  margin-right: 2rem;
+  float: right;
+}
+
