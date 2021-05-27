@@ -2,6 +2,10 @@ import React, { useState } from 'react'
 import axios from 'axios'
 import '../Bootstrab/login/sb-admin-2.css'
 import {useGoogleLogin} from 'react-google-login' 
+import ScrollTopButton from '../Components/ScollTopButton';
+import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router';
+import { AddUser } from '../Redux/FunctionRedux/User';
 const clientId = "953077210388-hrrqunh00aerbng60d4firkbdh2954q3.apps.googleusercontent.com";
 
  const  LoginScreen = () => {
@@ -18,9 +22,28 @@ const clientId = "953077210388-hrrqunh00aerbng60d4firkbdh2954q3.apps.googleuserc
     const [withGoogleError , setwithGoogleError] = useState('');
 
 
+    // redux 
+    const user = useSelector(state => state.user)
+    console.log(JSON.parse( localStorage.getItem('user_projet_2cp')))
+    const dispatch = useDispatch();
+    const history = useHistory();
+
+    // check user
+   axios.get("http://localhost:4000/checkUser",{withCredentials : true}).then(res => {
+        console.log(res.data,'server');
+    if (res.data.existe) {
+        dispatch(AddUser(res.data.user));
+        history.push('/');
+    }
+    })
+    if (user.existe) {
+        history.push('/');
+    }
+
+
+
 
     const handlerConnection = (e) => {
-        console.log(role);
         e.preventDefault();
         setWithGoogle(false);
         axios.post('http://localhost:4000/login',{
@@ -29,12 +52,13 @@ const clientId = "953077210388-hrrqunh00aerbng60d4firkbdh2954q3.apps.googleuserc
             compte : role,
             remember : remember,
             withGoogle
-        }).then(res => {
-            console.log(res.data)
+        },{withCredentials : true}).then(res => {
             if (res.data.err) {
                 setEmailError(res.data.err.email);
                 setPasswordError(res.data.err.password);
                 setRoleError(res.data.err.compte);
+            }else {
+                dispatch((AddUser(res.data.user)));
             }
         } )
     }
@@ -70,6 +94,7 @@ const clientId = "953077210388-hrrqunh00aerbng60d4firkbdh2954q3.apps.googleuserc
 
     return (
       <div className='loginScreen'>
+      <ScrollTopButton />
   
         <div className="container  ">
           <div className="row  justify-content-center">
@@ -88,44 +113,26 @@ const clientId = "953077210388-hrrqunh00aerbng60d4firkbdh2954q3.apps.googleuserc
                                             <input type="email" className="form-control form-control-user"
                                                 id="exampleInputEmail" aria-describedby="emailHelp"
                                                 placeholder="Addresse e-mail..." value={email}
-                                                onChange={(e) => setEmail(e.target.value)}
+                                                onChange={(e) =>{
+                                                    setEmail(e.target.value)
+                                                    setEmailError('');
+                                                    }}
                                                 />
                                             <p className='errLogin'>{emailError}</p>
                                         </div>
                                         <div className="form-group">
                                             <input type="password" className="form-control form-control-user"
                                                 id="exampleInputPassword" placeholder="Mot de passe"
-                                                value={password} onChange={(e) => setPassword(e.target.value)} 
+                                                value={password} onChange={(e) =>{
+                                                    setPassword(e.target.value);
+                                                    setPasswordError('');
+                                                    
+                                                    }} 
                                                 />
                                             <p className='errLogin'>{passwordError}</p>
                                         </div>
-                                        <details className='fonctionRadio'  >
-                                            <summary > Choisis le compte</summary>
-                                            
-                                            <div className='misajourFonction'>
-                                                <input type='checkbox'  name="choix" value="misaAjour"  id='misaAjour2'
-                                                  onClick={async (e) => {
-                                                        if (document.querySelector('#misaAjour2').checked){
-                                                           await setRole([...role ,"misaAjour" ])
-                                                        }  
-                                                        else setRole(role => role.filter(x=> x != "misaAjour") )
-                                                        }}   
-                                                />
-                                                <label> miss a jour </label> 
-                                            </div>
-                                            <div className='consultationFonction'>
-                                                <input type="checkbox"  name="choix" id='consultation2' value="consultation" 
-                                                  onClick={async (e) => {
-                                                        if (document.querySelector('#consultation2').checked){
-                                                           await setRole([...role ,"consultation"])
-                                                        }  
-                                                        else setRole(role => role.filter(x=> x != "consultation") )
-                                                        }}   
-                                                />  
-                                                <label> consultation</label>   
-                                            </div>  
-                                        </details>
-                                        <p className='errLogin'>{roleError}</p>
+                                       
+                                        
                                         <div className="form-group">
                                             <div className="custom-control custom-checkbox small">
                                                 <input type="checkbox" className="custom-control-input" id="customCheck"

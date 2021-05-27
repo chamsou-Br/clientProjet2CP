@@ -1,0 +1,3 @@
+export const INIT_DOSSIERS = "INIT_DOSSIERS" ;
+export const ADD_DOSSIER= "ADD_DOSSIER";
+export const MODIFY_DOSSIER = "MODIFY_DOSSIER"

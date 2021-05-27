@@ -1,22 +1,54 @@
 import axios from 'axios'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router'
 import '../Bootstrab/Acceil/sb-admin-2.css'
 import Navbar from '../Components/Navbar'
 import Sidebar from '../Components/Sidebar'
+import { ModifyDossier } from '../Redux/FunctionRedux/Dossies'
+import { AddUser } from '../Redux/FunctionRedux/User'
 // "609a3694bcbe4715504c7fb2"
 export default function Compatable(props) {
 
-            const [date_reception, setdate_reception] = useState("");
-            const [respo_dossier, setrespo_dossier] = useState("");
-            const [decision, setdecision] = useState('');
-            const [piece_cmpleter, setpiece_cmpleter] = useState("");
-            const [date_cmplement, setdate_cmplement] = useState("");
-            const [date_paiement, setdate_paiement] = useState("");
-            const [observations, setobservations] = useState("");
-            const [duree_trait, setduree_trait] = useState("");
-            const id  = props.match.params.id ;
-            const history= useHistory();
+       const id  = props.match.params.id ;
+       const history= useHistory();
+       const dispatch = useDispatch();
+        // redux
+        const Docs = useSelector(state => state.dossiers.Dossiers)
+        const Dossier = Docs.filter(doc =>{ return doc._id === id}).length > 0 ? Dossier = Docs.filter(doc =>{ return doc._id === id})[0] : {comptable : {}};
+        if (Dossier = Docs.filter(doc =>{ return doc._id === id}).length === 0) history.push('/')
+        const user = useSelector(state => state.user)
+        
+    // check if user EXiste
+    if (!user.existe) {
+        axios.get("http://localhost:4000/checkUser",{withCredentials : true}).then(res => {
+            console.log(res.data,'server');
+        if (res.data.existe) {
+            dispatch(AddUser(res.data.user));
+        }else {
+            history.push('/login');
+        }
+    })
+    }
+    useEffect(()=> {
+        if (user.existe) {
+            if (user.user.service != 'compatable' && user.user.service != 'ordonnateur')  {
+                history.push('/')
+            }
+        }
+    },[user])
+
+
+            const [date_reception, setdate_reception] = useState(Dossier.comptable.date_reception ? Dossier.comptable.date_reception : '' );
+            const [respo_dossier, setrespo_dossier] = useState(Dossier.comptable.respo_dossier ? Dossier.comptable.respo_dossier : '');
+            const [decision, setdecision] = useState(Dossier.comptable.decision ? Dossier.comptable.decision :'');
+            const [piece_cmpleter, setpiece_cmpleter] = useState(Dossier.comptable.piece_cmpleter ? Dossier.comptable.piece_cmpleter : '');
+            const [date_cmplement, setdate_cmplement] = useState(Dossier.comptable.date_cmplement ? Dossier.comptable.date_cmplement : '');
+            const [date_paiement, setdate_paiement] = useState(Dossier.comptable.date_paiement ? Dossier.comptable.date_paiement : '');
+            const [observations, setobservations] = useState(Dossier.comptable.observations ? Dossier.comptable.observations : '');
+            const [duree_trait, setduree_trait] = useState(Dossier.comptable.duree_trait ? Dossier.comptable.duree_trait : '');
+            const [num_dossier , setnum_dossier] = useState(Dossier.num_dossier)
+            
 
             const hanlerClick = (e,type) => {
                 e.preventDefault();
@@ -38,7 +70,7 @@ export default function Compatable(props) {
                     date_cmplement,
                     date_paiement,
                     type 
-                }).then(res => console.log(res.data));
+                }).then(res => dispatch(ModifyDossier(res.data)));
                 history.push('/');
             }
 
@@ -57,7 +89,7 @@ export default function Compatable(props) {
                     <form id='form'>
                     <div className='div'>
                     <div><label htmlFor="numdoss">N° de dossier</label></div>
-                    <div><input type="text" id="numdoss" name="numdoss" disabled /></div>
+                    <div><input type="text" id="numdoss" name="numdoss" disabled value={num_dossier} /></div>
                     </div>
                     <div className='div'>
                         <div><label htmlFor="daterec">date de réception</label></div> 

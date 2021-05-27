@@ -1,9 +1,16 @@
 import axios from 'axios';
-import React, { useState } from 'react'
-import '../Bootstrab/login/sb-admin-2.css'
+import React, { useEffect, useRef, useState } from 'react'
+import { useSelector } from 'react-redux';
+import { useHistory } from 'react-router';
+import '../Bootstrab/login/sb-admin-2.css';
+
+
 
 const RegistreScreen = () => {
 
+    const history = useHistory();
+    const [message, setmessage] = useState("");
+    const [etaMessage, setetaMessage] = useState('')
     const [firstname , setFirstName] = useState('');
     const [lastname , setLastName] = useState('');
     const [email , setEmail] = useState('');
@@ -18,8 +25,11 @@ const RegistreScreen = () => {
     const [serviceError , setServiceError] = useState('');
     const [CompteError , setCompteError] = useState('') 
 
+
     const handlerConnection = (e) => {
         e.preventDefault();
+        if (service === 'adminstration') setCompte(['consultation'])
+        if (service === 'ordonnateur' ) setCompte(['miseAjour','consultation'])
         axios.post('http://localhost:4000/registre',{
             email : email , 
             password : password ,
@@ -30,17 +40,48 @@ const RegistreScreen = () => {
         }).then(res => {
             console.log(res.data)
             if (res.data.err) {
+                setetaMessage('registreFalse');
+                setmessage("this compte n'est pas registred");
                 setEmailError(res.data.err.email);
                 setPasswordError(res.data.err.password);
                 setUsernameError(res.data.err.username);
                 setServiceError(res.data.err.service)
                 setCompteError(res.data.err.compte)
+                setTimeout(()=> {
+                    setmessage('');
+                    setetaMessage('');
+                },4000)
+            }else {
+                setCompte('');
+                setEmail('');
+                setFirstName('');
+                setLastName('');
+                setPassword('');
+                setConfirmPassword('');
+                setService('');
+                setetaMessage('registreTrue')
+                setmessage('this compte is registre succefully');
+                setTimeout(()=> {
+                    setmessage('');
+                    setetaMessage('');
+                },4000)
+                
+            
             }
+            
         } )
     }
-    const handlerConnectionGoogle = (e) => {
-        e.preventDefault();
-    }
+    const user = useSelector(state => state.user);
+
+    useEffect(()=> {
+        if (user.existe) {
+            if (user.user.service != 'adminstration')  {
+                history.push('/')
+            }
+        }else {
+            history.push('/login')
+        }
+    },[user])
 
     return (
         <div className='registreScreen'>
@@ -100,26 +141,35 @@ const RegistreScreen = () => {
                                         <div className="col-sm-6 mb-3 mb-sm-0" onChange={e => setService(e.target.value)} >
                                             <details style={{marginTop : "0.2rem",marginBottom : "1rem",marginLeft : "0.4rem"}} className='fonctionRadio' >
                                                 <summary > Choisis le Service</summary>
-                                                
                                                 <div className='seriveRadio'>
-                                                    <input type="radio"  name="choix" value="service1" 
-                                                    />
-                                                    <label> Service 01</label> 
-                                                </div>
-                                                <div className='seriveRadio'>
-                                                    <input type="radio"  name="choix" value="service2" 
-                                                    />
-                                                    <label> Service 02 </label> 
-                                                </div>
-                                                <div className='seriveRadio'>
-                                                    <input type="radio"  name="choix" value="service3" 
+                                                    <input type="radio"  name="choix" value="adminstration" 
                                                     />  
-                                                    <label> Service 03</label>   
+                                                    <label> Adminstration</label>   
+                                                </div>
+                                                <div className='seriveRadio'>
+                                                    <input type="radio"  name="choix" value="ordonnateur" 
+                                                    />  
+                                                    <label> Ordonnateur</label>   
+                                                </div>
+                                                <div className='seriveRadio'>
+                                                    <input type="radio"  name="choix" value="marche" 
+                                                    />
+                                                    <label> Service marche</label> 
+                                                </div>
+                                                <div className='seriveRadio'>
+                                                    <input type="radio"  name="choix" value="commande" 
+                                                    />
+                                                    <label> Service commande </label> 
+                                                </div>
+                                                <div className='seriveRadio'>
+                                                    <input type="radio"  name="choix" value="budget" 
+                                                    />  
+                                                    <label> Service budget</label>   
                                                 </div>  
                                                 <div className='seriveRadio'>
-                                                    <input type="radio"  name="choix" value="service4" 
+                                                    <input type="radio"  name="choix" value="compatable" 
                                                     />  
-                                                    <label> Service 04</label>   
+                                                    <label> Service compatable</label>   
                                                 </div>  
                                             </details>
                                             <p className='errLogin'>{serviceError}</p>
@@ -133,7 +183,7 @@ const RegistreScreen = () => {
                                                         if (document.querySelector('#consultation').checked){
                                                            await setCompte([...compte ,'consultation' ])
                                                         }  
-                                                        else setCompte(compte => compte.filter(x=> x != 'consultation') )
+                                                        else {if (compte.length > 0)  setCompte(compte => compte.filter(x=> x != 'consultation')) ;} 
                                                     }}    
                                                     />  
                                                     <label> consultation</label>   
@@ -144,7 +194,8 @@ const RegistreScreen = () => {
                                                         if (document.querySelector('#miseAjour').checked){
                                                            await setCompte([...compte ,'miseAjour' ])
                                                         }  
-                                                        else setCompte(compte => compte.filter(x=> x != 'miseAjour') )
+                                                        else { if (compte.length > 0) setCompte(compte => compte.filter(x=> x != 'miseAjour'));
+                                                         }    
                                                         }}    
                                                      />  
                                                     <label> mise a jour</label>   
@@ -157,11 +208,11 @@ const RegistreScreen = () => {
                                     <a href="login.html" onClick={(e) => handlerConnection(e)}   className="btn btn-primary btn-user btn-block">
                                         Register Account
                                     </a>
+                                    
                                     <hr/>
+                                    <p className={etaMessage} >{message}</p>
                                 </form>
-                                <div className="text-center">
-                                    <a className="small" href="login.html">Already have an account? Login!</a>
-                                </div>
+      
                             </div>
                         </div>
                     </div>

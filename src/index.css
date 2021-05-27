@@ -91,6 +91,30 @@ box-shadow: 5px 5px 2px 2px #000;
   line-height: 1.3rem;
 } 
 
+.registreScreen .registreTrue {
+  
+  width: 70%;
+  margin: auto;
+  padding: 0.2rem 0rem;
+  text-align: center;
+  margin-top: 1rem;
+  font-weight: 400;
+  color: rgba(37, 199, 37,99);
+  border-radius: 0.4rem;
+}
+
+.registreScreen .registreFalse {
+  
+  width: 70%;
+  margin: auto;
+  padding: 0.2rem 0rem;
+  text-align: center;
+  margin-top: 1rem;
+  font-weight: 400;
+  color: crimson;
+  border-radius: 0.4rem;
+}
+
 /* ------------------------------------------- */
             /* commande Screen */
 /* ------------------------------------------- */
@@ -426,7 +450,7 @@ box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   margin: 0.5rem 10rem 0 10rem;
 }
 
-.marche input[type=date], select{
+.marche input[type=date], select,.selectMarch{
   width: 100%;
   border: 1px solid #DCDCDC;
   border-radius: 3px;
@@ -582,4 +606,305 @@ box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   margin-right: 2rem;
   float: right;
 }
+
+
+
+ /* ------------------------------------------- */
+            /* Consultation Screen */
+/* ------------------------------------------- */ 
+.consultation {
+
+  background-image: url('./images/site-background.jpg'); 
+
+
+}
+
+@media only screen and (max-width:2000px) and (min-width:1020px){
+
+.consultation .bot3{
+    background-color: rgb(92, 92, 230);
+    border-radius: 20px;color: white;width: 40%;height: 40px;
+    float: right;
+    margin-right: 7%;
+  }
+  .consultation .bor{
+    border: none;
+    font-weight:bold; /* l3ored ta3 lekhet*/
+  }
+  .consultation .bor:hover{
+    background-color: white;
+    color: #000;
+   
+  }
+  
+  .consultation .divnavre{
+    width: 60%;
+    height: 90%;
+    margin-top: 4%;
+    margin-bottom: 6%;
+  }
+  .consultation .divnavdec{
+    width: 40%;
+    height: 90%;
+    margin-top: 4%;
+    margin-bottom: 6%;
+}
+  .consultation .navclass{
+    width: 100%;
+    height: 110px;
+    display: flex;
+}
+  .consultation .divt{
+    width: 50%;
+    height: auto;
+  }
+ .consultation .lbc{
+   font-size:20px;
+   margin-top: 25px;
+   margin-left: 40px;
+   margin-bottom: 25px;
+   color: #000;
+   font-weight: bold;
+   
+ }
+ .consultation .lbc span {
+  color: #000000CC;
+  font-weight: 500;
+ }
+ 
+ .consultation .mainclass{
+   display: block;
+   height: auto;
+   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3), 0 6px 20px 0 rgba(0, 0, 0, 0.25);
+   padding-top: 1rem;
+   margin-left: 2rem;
+   margin-right: 2rem;
+   
+ }
+ .consultation .avencement{
+   width: 97%;
+   margin: auto;
+   height: auto;
+   background-image: url('./images/site-background.jpg'); 
+   border-radius: 6px;
+   border-style: solid;
+   border-color: rgb(214, 209, 209);
+   border-width: 1px;
+   display: flex;
+ }
+
+ .consultation .service{
+  width: 97%;
+  margin: auto;
+  margin-top: 4%;
+  height:auto;
+  background-image: url('./images/site-background.jpg'); 
+  border-radius: 6px;
+  border-style: solid;
+  border-color: rgb(214, 209, 209);
+  border-width: 1px;
+  display: block;
+
+}
+
+.consultation .title{
+    text-align: center;
+    color: #1c294e;
+    font-size: 35px;
+    font-weight: bold;
+}
+.consultation .ligne{
+  background-color: rgb(226, 225, 225);
+  width: 60%;
+  margin-left: 20%;
+  height: 1.2px;
+}
+}
+
+@media only screen and (max-width:1020px) and (min-width:810px){
+  .consultation .divt{
+    width: 50%;
+    height: auto;
+  }
+  .consultation .lbc{
+    font-size:15px;
+    margin-top: 25px;
+    margin-left: 8%;
+    margin-bottom: 25px;
+       color: #000;
+   font-weight: bold;
+    
+  }
+  .consultation .lbc span {
+    color: #000000cc;
+    font-weight: 500;
+  }
+
+  .consultation .navclass{
+      width: 100%;
+      height: 110px;
+  }
+  .consultation .mainclass{
+    display: block;
+    height: auto;
+    
+  }
+  .consultation .avencement{
+    width: 97%;
+    margin: auto;
+    height: auto;
+    background-color: url("./images/site-background.jpg");
+    border-radius: 6px;
+    border-style: solid;
+    border-color: rgb(214, 209, 209);
+    border-width: 1px;
+    display: flex;
+  }
+ 
+  .consultation .service{
+   width: 97%;
+   margin: auto;
+   margin-top: 4%;
+   height:auto;
+   background: url("./images/site-background.jpg");
+   border-radius: 6px;
+   border-style: solid;
+   border-color: rgb(214, 209, 209);
+   border-width: 1px;
+   display: block;
+ }
+ 
+ 
+ 
+ .consultation .title{
+     text-align: center;
+     color: #1c294e;
+     font-size: 25px;
+     font-weight: bold;
+ }
+ .consultation.ligne{
+   background-color: rgb(226, 225, 225);
+   width: 60%;
+   margin-left: 20%;
+   height: 1.2px;
+ }
+ }
+ @media only screen and (max-width:810px) and (min-width:100px){
+  .consultation .divt{
+    width: 100%;
+    height: auto;
+  }
+  .consultation .lbc{
+    font-size:15px;
+    margin-top: 25px;
+    margin-left: 8%;
+    margin-bottom: 25px;
+    color: #000;
+   font-weight: bold;
+    
+  }
+  .consultation .lbc span {
+    color: #000000CC;
+    font-weight: 500;
+  }
+  .consultation .navclass{
+      width: 100%;
+      height: 110px;
+  }
+  .consultation .mainclass{
+    display: block;
+    height: auto;
+    
+  }
+  
+  .consultation .avencement{
+    width: 97%;
+    margin: auto;
+    height: auto;
+    background: url('./images/site-background.jpg');
+    border-radius: 6px;
+    border-style: solid;
+    border-color: rgb(214, 209, 209);
+    border-width: 1px;
+    display: block;
+  }
+ 
+  .consultation .service{
+   width: 97%;
+   margin: auto;
+   margin-top: 4%;
+   height:auto;
+  background-color: url("./images/site-background.jpg");
+   border-radius: 6px;
+   border-style: solid;
+   border-color: rgb(214, 209, 209);
+   border-width: 1px;
+   display: block;
+ }
+ 
+ 
+ 
+ .consultation .title{
+     text-align: center;
+     color: #1c294e;
+     font-size: 25px;
+     font-weight: bold;
+ }
+ .consultation .ligne{
+   background-color: rgb(226, 225, 225);
+   width: 60%;
+   margin-left: 20%;
+   height: 1.2px;
+ }
+ }
+ .consultation .titleDiv {
+
+  background: url('./images/site-background.jpg');
+
+ }
+
+
+
+ /* *********************************************************** */
+ /*                     LOADING PAGE                            */
+ /* *********************************************************** */
+ .loading {
+  background: url('./images/site-background.jpg');
+  width: 100%;
+  min-height: 47rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+ }
+
+ .loaderpere {
+   
+ background: #000000AA;
+ width: 30rem;
+ height: 30rem;
+ border-radius: 100%;
+ margin: auto;
+ padding-top: 10rem;
+ box-shadow: inset 1rem 1rem  10rem #000,1rem 1rem  10rem #000;;
+
+ }
+
+ .loader {
+   
+  background: #FFF;
+  border-radius: 50%;
+  width: 2rem;
+  height: 2rem;
+  margin: auto;
+  
+}
+.loding_Title {
+  font-size: 3rem;
+  font-weight: bold;
+  color: #FFF;
+  text-align: center;
+
+
+}
+
 

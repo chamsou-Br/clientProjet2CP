@@ -1,59 +1,56 @@
 import axios from 'axios'
 import React, { useEffect ,useState } from 'react'
 import '../Bootstrab/Acceil/sb-admin-2.css'
-import esiImage from '../images/esi_white.png'
-import profileImage  from '../images/undraw_profile.svg';
-import { Bell , ArrowUp} from "react-bootstrap-icons"
 import $ from 'jquery'
 import Navbar from '../Components/Navbar';
 import Sidebar from '../Components/Sidebar';
 import Footer from '../Components/Footer';
+import ScrollTopButton from '../Components/ScollTopButton';
 import ModalDialog from '../Components/ModalDialog';
+import { useDispatch, useSelector } from 'react-redux'
+import { initDossier } from '../Redux/FunctionRedux/Dossies'
+import { useHistory, withRouter } from 'react-router';
+import { AddUser } from '../Redux/FunctionRedux/User';
+import { Link } from 'react-router-dom';
+import Loading from './Loading';
 
 export default function Acceil() {
 
-    const [Dossiers, setDossiers] = useState([]);
 
+    // redux 
+    const Dossiers = useSelector(state => state.dossiers.Dossiers)
+    const user =  useSelector(state => state.user);
+    const history = useHistory();
+    const dispatch = useDispatch();
+
+
+
+    // check if user EXiste
+    if (!user.existe) {
+        axios.get("http://localhost:4000/checkUser",{withCredentials : true}).then(res => {
+            console.log(res.data,'server');
+        if (res.data.existe) {
+            dispatch(AddUser(res.data.user));
+        }else {
+            history.push('/login');
+        }
+    })
+    }
+
+    // counteDidMount
     useEffect(()=> {
         axios.get('http://localhost:4000/dossiers/getdossier').then(res => {
-            setDossiers(res.data);
-            console.log(res.data);
+            dispatch(initDossier(res.data));
         })
-    },[])
-   
-    // scroll Top button display
-    window.onscroll = function(){ 
-        if (window.scrollY >= 10) {
-            if (!document.querySelector('.scrollTop').classList.contains('active')) {
-                document.querySelector('.scrollTop').classList.add('active');
-            }
-        }else {
-            if (document.querySelector('.scrollTop').classList.contains('active')) {
-                document.querySelector('.scrollTop').classList.remove('active');
-            }
-        }
-     }
-
-     // scroll top function
-    const NavAnimation = ( e) => {
-        e.preventDefault()  
-            $("html, body").animate({
-        
-                scrollTop: 0
-    
-            },1000);
-      }
-
-    
+    },[]);
+    const cond = true
+    if (cond) {
     return (
         <>
           <div id="wrapper">
-            <div className='scrollTop ' onClick={(e) => NavAnimation(e)}>
-                <ArrowUp  className='icon  ' color='white' size={20} />
-            </div>
-                <Sidebar />
+            <ScrollTopButton />
+                <Sidebar user={user} />
                <div id="content-wrapper" className="d-flex flex-column">
-
                 <div id="content">
 
                   <Navbar />
@@ -102,7 +99,7 @@ export default function Acceil() {
                                     </tfoot>
                                     
                                     <tbody>
-                                    {Dossiers.length > 1 && Dossiers.map(doc => {
+                                    {Dossiers.length > 0 && Dossiers.map(doc => {
                                         return(
                                         <tr key={doc._id}>
                                             <td>{doc.num_dossier}</td>
@@ -110,9 +107,12 @@ export default function Acceil() {
                                             <td>{doc.marche.fournisseur}</td>
                                             <td>Pas Encore</td>
                                             <td>{doc.marche.date_lancement}</td>
-                                            <td>
-                                                    <a className="consulter" href=".html">consulter</a>
-                                            </td>
+                                            {user.existe ? user.user.compte.includes('miseAjour') ? (
+                                                <td>
+                                                    <Link className="consulter" to={`/consultation/${doc._id}`} >consulter</Link>
+                                                </td>
+                                            ) : null : null }
+   
                                         </tr>
                                         )
                                     })}
@@ -132,5 +132,8 @@ export default function Acceil() {
                 </>
       
        
-    )
+    )}
+    else {return (
+        <Loading/>
+    )}
 }

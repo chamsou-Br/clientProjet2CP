@@ -1,26 +1,50 @@
 import axios from 'axios'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Bell } from 'react-bootstrap-icons'
 import { useHistory } from 'react-router'
 import '../Bootstrab/Acceil/sb-admin-2.css'
 import esiImage from '../images/esi_white.png'
 import Navbar from '../Components/Navbar';
 import Sidebar from '../Components/Sidebar'
+import { useDispatch, useSelector } from 'react-redux'
+import { ModifyDossier } from '../Redux/FunctionRedux/Dossies'
+import { AddUser } from '../Redux/FunctionRedux/User'
 
 export default function Budget(props) {
 
-        const [date_reception, setdate_reception] = useState('');
-        const [respo_dossier, setrespo_dossier] = useState('');
-        const [observations, setobservations] = useState("");
-        const [date_engag_cf, setdate_engag_cf] = useState("");
-        const [motifs_rejet, setmotifs_rejet] = useState('');
-        const [date_visa_rejet, setdate_visa_rejet] = useState('');
-        const [date_mandatement, setdate_mandatement] = useState('');
-        const [date_transm, setdate_transm] = useState('');
-        const [duree_trait, setduree_trait] = useState('');
-        //const id = "609a3694bcbe4715504c7fb2";
+         const history = useHistory() ;
         const id  = props.match.params.id ;
-        const history = useHistory() ;
+        // redux
+        const Docs = useSelector(state => state.dossiers.Dossiers);
+        const Dossier = Docs.filter(doc =>{ return doc._id === id}).length > 0 ? Docs.filter(doc =>{ return doc._id === id})[0] : {budget : {}};
+        if (Docs.filter(doc =>{ return doc._id === id}).length === 0) history.push('/')
+        const dispatch = useDispatch();
+        const user = useSelector(state => state.user)
+
+       
+    // check if user EXiste
+    if (!user.existe) {
+        axios.get("http://localhost:4000/checkUser",{withCredentials : true}).then(res => {
+            console.log(res.data,'server');
+        if (res.data.existe) {
+            dispatch(AddUser(res.data.user));
+        }else {
+            history.push('/login');
+        }
+    })
+    }
+
+        const [date_reception, setdate_reception] = useState(Dossier.budget.date_reception ? Dossier.budget.date_reception : '');
+        const [respo_dossier, setrespo_dossier] = useState(Dossier.budget.respo_dossier ? Dossier.budget.respo_dossier : '');
+        const [observations, setobservations] = useState(Dossier.budget.observations ? Dossier.budget.observations : ' ');
+        const [date_engag_cf, setdate_engag_cf] = useState(Dossier.budget.date_engag_cf ? Dossier.budget.date_engag_cf : '');
+        const [motifs_rejet, setmotifs_rejet] = useState(Dossier.budget.motifs_rejet ? Dossier.budget.motifs_rejet : '');
+        const [date_visa_rejet, setdate_visa_rejet] = useState(Dossier.budget.date_visa_rejet ? Dossier.budget.date_visa_rejet : '');
+        const [date_mandatement, setdate_mandatement] = useState(Dossier.budget.date_mandatement ? Dossier.budget.date_mandatement : '');
+        const [date_transm, setdate_transm] = useState(Dossier.budget.date_transm ? Dossier.budget.date_transm : '');
+        const [duree_trait, setduree_trait] = useState(Dossier.budget.duree_trait);
+        const [num_dossier , setnum_dossier] = useState(Dossier.num_dossier)
+
 
         const hanlerClick = (e,type) => {
             e.preventDefault();
@@ -44,9 +68,17 @@ export default function Budget(props) {
                 date_mandatement,
                 date_transm,
                 type 
-            }).then(res => console.log(res.data));
+            }).then(res => dispatch(ModifyDossier(res.data)));
             history.push('/');
         }
+
+        useEffect(()=> {
+            if (user.existe) {
+                if (user.user.service != 'budget' && user.user.service != 'ordonnateur')  {
+                    history.push('/')
+                }
+            }
+        },[user])
 
     return (
         <div className='budget'>
@@ -64,7 +96,7 @@ export default function Budget(props) {
                             <form id='form'>
                             <div class='div'>
                             <div><label for="numdoss">N° de dossier</label></div>
-                            <div><input type="text" id="numdoss" name="numdoss" disabled /></div>
+                            <div><input type="text" id="numdoss" name="numdoss" disabled value={num_dossier} /></div>
                             </div>
                             <div class='div'>
                                 <div><label for="daterec">date de réception</label></div> 

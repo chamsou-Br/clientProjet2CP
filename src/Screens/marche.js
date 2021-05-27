@@ -1,31 +1,66 @@
 import axios from 'axios'
-import React, { useState  } from 'react'
+import React, { useEffect, useState  } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router'
 import '../Bootstrab/Acceil/sb-admin-2.css'
 import Navbar from '../Components/Navbar'
+import ScrollTopButton from '../Components/ScollTopButton'
 import Sidebar from '../Components/Sidebar'
 import esiImage from '../images/esi_white.png'
 import profileImage  from '../images/undraw_profile.svg'
+import { ModifyDossier } from '../Redux/FunctionRedux/Dossies'
+import { AddUser } from '../Redux/FunctionRedux/User'
 
 //const id = "609a3694bcbe4715504c7fb2";
 
 const Marche = (props) => {
 
-    const [type_prestation, settype_prestation] = useState('Marchés');
-    const [objet, setobjet] = useState('');
-    const [date_lancement, setdate_lancement] = useState("");
-    const [data_ouverture, setdata_ouverture] = useState("");
-    const [observation, setobservation] = useState("");
-    const [fournisseur, setfournisseur] = useState('');
-    const [data_transm, setdata_transm] = useState('');
-    const [decision, setdecision] = useState('');
-    const [num_convention, setnum_convention] = useState('');
-    const [respo_dossier, setrespo_dossier] = useState('');
-    const [duree_trait, setduree_trait] = useState('');
     const id  = props.match.params.id ;
     const history = useHistory()
+        
+    // redux
+        const Docs = useSelector(state => state.dossiers.Dossiers)
+        const Dossier = Docs.filter(doc =>{ return doc._id === id}).length > 0 ? Docs.filter(doc =>{ return doc._id === id})[0] : {marche : {}};
+        if (Docs.filter(doc =>{ return doc._id === id}).length === 0) history.push('/')
+        const user = useSelector(state => state.user);
+        const dispatch = useDispatch();
+
+    // check if user EXiste
+    if (!user.existe) {
+      axios.get("http://localhost:4000/checkUser",{withCredentials : true}).then(res => {
+          console.log(res.data,'server');
+      if (res.data.existe) {
+          dispatch(AddUser(res.data.user));
+      }else {
+          history.push('/login');
+      }
+  })
+  }
+  useEffect(()=> {
+    if (user.existe) {
+        if (user.user.service != 'marche' && user.user.service != 'ordonnateur')  {
+            history.push('/')
+        }
+    }
+},[user])
+        
+
+    const [type_prestation, settype_prestation] = useState(Dossier.marche.type_prestation ? Dossier.marche.type_prestation : 'Marchés');
+    const [objet, setobjet] = useState(Dossier.marche.objet ? Dossier.marche.objet : '');
+    const [date_lancement, setdate_lancement] = useState(Dossier.marche.date_lancement ? Dossier.marche.date_lancement : '');
+    const [data_ouverture, setdata_ouverture] = useState(Dossier.marche.data_ouverture ? Dossier.marche.data_ouverture : '');
+    const [observation, setobservation] = useState(Dossier.marche.observation ? Dossier.marche.observation : '');
+    const [fournisseur, setfournisseur] = useState(Dossier.marche.fournisseur ? Dossier.marche.fournisseur : '');
+    const [data_transm, setdata_transm] = useState(Dossier.marche.data_transm ? Dossier.marche.data_transm : '');
+    const [decision, setdecision] = useState(Dossier.marche.decision ? Dossier.marche.decision : '');
+    const [num_convention, setnum_convention] = useState(Dossier.marche.num_convention ? Dossier.marche.num_convention : '');
+    const [respo_dossier, setrespo_dossier] = useState(Dossier.marche.respo_dossier ? Dossier.marche.respo_dossier : '');
+    const [duree_trait, setduree_trait] = useState(Dossier.marche.duree_trait ? Dossier.marche.duree_trait : '');
+    const [num_dossier , setnum_dossier] = useState(Dossier.num_dossier)
 
 
+
+  console.log(Dossier , Dossier.marche.decision)
     const handlerClick = (e,type) => {
         e.preventDefault();
         console.log({
@@ -53,16 +88,14 @@ const Marche = (props) => {
             num_convention,
             respo_dossier,
             type
-        }).then(res => console.log(res.data));
-        axios.get('http://localhost:4000/indexe').then(res => {
-            console.log(res.data);
-        })
+        }).then(res => dispatch(ModifyDossier(res.data)));
         history.push('/');
     }
 
     return(
         <div className='marche'>
         <div id="wrapper">
+        <ScrollTopButton />
         <Sidebar />
         <div id="content-wrapper" className="d-flex flex-column">
             <div id="content">
@@ -76,12 +109,12 @@ const Marche = (props) => {
                     <div id='form'>
                      <div className='div'>
                      <div><label htmlFor="numdoss">N° de dossier</label></div>
-                     <div><input type="text" id="numdoss" name="numdoss" disabled/></div>
+                     <div><input type="text" id="numdoss" disabled name="numdoss" value={num_dossier} /></div>
                       </div>
                      <div className='div'>
                      <div><label htmlFor="type">Type de prestation</label></div>
-                     <div>
-                      <select name="type" id="type"  onChange={(e) => settype_prestation(e.target.value)}>
+                     <div >
+                      <select className='selectMarch' name="type" id="type"  onChange={(e) => settype_prestation(e.target.value)}>
                         <option value="volvo">Marchés</option>
                         <option value="saab">Consultation</option>
                         <option value="opel">Gré-à-Gré</option>
