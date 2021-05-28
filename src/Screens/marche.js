@@ -87,7 +87,8 @@ const Marche = (props) => {
             decision,
             num_convention,
             respo_dossier,
-            type
+            type,
+            id : user.user._id
         }).then(res => dispatch(ModifyDossier(res.data)));
         history.push('/');
     }

@@ -67,7 +67,8 @@ export default function Budget(props) {
                 date_visa_rejet,
                 date_mandatement,
                 date_transm,
-                type 
+                type ,
+                id : user.user._id
             }).then(res => dispatch(ModifyDossier(res.data)));
             history.push('/');
         }

@@ -89,7 +89,8 @@ export default function Commande(props) {
             date_reception_prest,
             num_fact_definitive,
             num_bon_reception,
-            type
+            type,
+            id : user.user._id
         }).then(res => dispatch(ModifyDossier(res.data)));
         axios.get('http://localhost:4000/indexe').then(res => {
             console.log(res.data);

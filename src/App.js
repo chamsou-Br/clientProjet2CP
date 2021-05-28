@@ -16,6 +16,7 @@ import BudgetEncore from "./Screens/BudgetEncore";
 import CompatableEncore from "./Screens/CompatableEncore";
 import ConsultationDossier from "./Screens/ConsultationDossier";
 import Loading from "./Screens/Loading";
+import Notification from "./Screens/Notification";
 
 function App() {
  
@@ -36,7 +37,7 @@ function App() {
             <Route component={BudgetEncore} exact path='/budget/edit' />
             <Route component={CompatableEncore} exact path='/compatable/edit' />
             <Route component={ConsultationDossier} exact path='/consultation/:id' />
-            
+            <Route component={Notification} path='/notification' />
           </BrowserRouter>
         
       </div>

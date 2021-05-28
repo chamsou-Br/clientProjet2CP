@@ -45,6 +45,7 @@ export default function Nouveau(props) {
             num_dossier,
             type_prestation,
             fournisseur,
+            id : user.user._id,
             date_lancement : new Date().getDate().toString() + '/' +   ( new Date().getMonth() + 1).toString() + '/' + new Date().getFullYear().toString()
         }).then(res => dispatch(AddDossier(res.data)));
         history.push('/');

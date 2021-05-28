@@ -612,15 +612,56 @@ box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
  /* ------------------------------------------- */
             /* Consultation Screen */
 /* ------------------------------------------- */ 
+
 .consultation {
 
-  background-image: url('./images/site-background.jpg'); 
+  background-color: #FFF;
+}
 
+.consultation .servicesName {
+  display: flex;
+
+}
+.consultation .serviceName {
+  background-color: #FFF;
+  border: 0.1rem solid #00000077;
+  padding: 0.2rem 0rem;
+  text-align: center;
+  flex: 1;
+  cursor: pointer;
+}
+.consultation .serviceName.active {
+  background-color: #1c294e;
+  color: #FFF;
+}
+
+.consultation .serviceTitle {
+  color: #1c294e;
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+.consultation .serviceName.active .serviceTitle {
+  color: #FFF;
+}
+
+.consultation .titleTable {
+  margin-top: 0.5rem;
+  color: rgb(92, 90, 90);
+  font-weight: bold;
+  font-size: 1rem;
+  margin-left: 1rem;
 
 }
 
 @media only screen and (max-width:2000px) and (min-width:1020px){
 
+.consultation .servicesName {
+  margin-left: 3rem;
+  width: 60%;
+}
+.consultation .titleTable {
+  margin-left: 7.5rem;
+}
 .consultation .bot3{
     background-color: rgb(92, 92, 230);
     border-radius: 20px;color: white;width: 40%;height: 40px;
@@ -675,8 +716,8 @@ box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
  .consultation .mainclass{
    display: block;
    height: auto;
-   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3), 0 6px 20px 0 rgba(0, 0, 0, 0.25);
    padding-top: 1rem;
+   padding-bottom: 1rem;
    margin-left: 2rem;
    margin-right: 2rem;
    
@@ -694,9 +735,9 @@ box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
  }
 
  .consultation .service{
-  width: 97%;
-  margin: auto;
-  margin-top: 4%;
+  width: 70%;
+  margin: 0;
+  margin-top: 1rem;
   height:auto;
   background-image: url('./images/site-background.jpg'); 
   border-radius: 6px;
@@ -704,6 +745,8 @@ box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   border-color: rgb(214, 209, 209);
   border-width: 1px;
   display: block;
+  margin-left: 7rem;
+
 
 }
 
@@ -904,7 +947,140 @@ box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   color: #FFF;
   text-align: center;
 
+}
 
+ /* ------------------------------------------- */
+            /* Notification Screen */
+/* ------------------------------------------- */ 
+
+.notification #main{
+  justify-content: center ;
+  padding-bottom: 1rem;   
+  margin-top: 2rem;
+  display: inline-block;
+  background-color: #FFF;
+  border-radius: 15px;
+  padding-top: 1rem;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3), 0 6px 20px 0 rgba(0, 0, 0, 0.25);
+ }
+
+.notification  h3 {
+  letter-spacing: 2px;
+  word-spacing: 3px;
+  font-size: 180%;
+  color: #191970;
+  font-weight: bold
+}
+
+.notification .notif{
+  background-color: #DEDFFD;
+  width: 63rem;
+  min-height: 5rem ;
+  border-radius: 40px;
+  padding-top: 0.7rem;
+  padding-left: 1rem;
+  padding-bottom: 0.5rem;
+  margin-bottom: 1rem;
+  margin: 0 0.5rem 0.8rem 0.5rem; 
+}
+
+.notification .date{
+  font-size: 90%;
+  float: left;
+  margin: 0;
+}
+
+.notification .circle img{
+  width: 2rem;
+  height: 2rem;
+}
+
+.notification .remarque{
+  float: left;
+  margin: 0;
+}
+.notification .circle{
+  background-color: red;
+  border-radius: 100%;
+  width: 3.5rem;
+  height: 3.5rem;
+  float: left;
+}
+.notification .text{
+  padding-left: 0;
+  margin-left: 3rem;
+  float: left;
+  display: block;
+}
+.notification .cancel{
+  float:right;
+  margin-right:  1.4rem;
+  margin-top: 0.95rem;
+}
+
+.notification .delete{
+  background-color: #DEDFFD;
+  border: none;
+  cursor: pointer;
+  color:#DEDFFD;
+  padding: 0;
+  width: 1.4rem;
+  height: 1.4rem;
+  border-radius: 100%;
+}
+
+.notification .delete:hover,.notification .delete:active{
+  border: none;
+}
+
+@media only screen and (max-width:600px){
+
+.notification .cancel{
+  float:right;
+  margin-right:  0.9rem;
+}
+
+.notification .notif{
+  width: 20rem;
+  margin: 0 0.2rem 0.8rem 0.2rem;
+  padding-left: 0.6rem;
+}
+
+.notification .text{
+  margin-left: 1rem;
+  padding-left: 0;
+}
+
+.notification #main{
+  margin-top: 0.7rem;
+ }
+
+.notification .remarque{
+  font-size: 90%;
+}
+}
+
+@media only screen and (min-width:600px) and (max-width:768px){
+
+.notification .cancel{
+  float:right;
+  margin-right:  0.9rem;
+}
+
+.notification .notif{
+  width: 31rem;
+  margin: 0 0.2rem 0.8rem 0.2rem;
+  padding-left: 0.6rem;
+}
+
+.notification .text{
+  margin-left: 1rem;
+  padding-left: 0;
+}
+
+.notification #main{
+  margin-top: 0.7rem;
+}
 }
 
 

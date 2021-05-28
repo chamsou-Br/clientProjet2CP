@@ -91,7 +91,7 @@ export default function Sidebar(props) {
                 </li>
 
                 <li className="nav-item">
-                    {userstate.existe ? user.service === 'adminstration' ? (
+                    {userstate.existe ? user.service === 'marche' || user.service === 'ordonnateur'  ? (
                         <Link className="nav-link" to="/nouveauDossier">
                         <i className="fas fa-fw fa-plus"></i>
                         <span>Ajouter un Dossier</span></Link>
@@ -100,7 +100,7 @@ export default function Sidebar(props) {
                 </li>
 
                 <li className="nav-item">
-                {userstate.existe ? user.service === 'marche' || user.service === 'ordonnateur' ? (
+                {userstate.existe ? user.service === 'adminstration' ? (
                        <Link className="nav-link" to="/registre">
                         <i className="fas fa-fw fa-plus"></i>
                         <span>Ajouter un compte</span></Link>

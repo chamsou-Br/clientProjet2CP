@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import '../Bootstrab/Acceil/sb-admin-2.css'
 import profileImage  from '../images/undraw_profile.svg';
 import { Bell , ArrowUp} from "react-bootstrap-icons"
@@ -18,13 +18,20 @@ export default function Navbar() {
     const Logout_Handler = (e) => {
         e.preventDefault();
         dispatch(RemoveUser());
-        axios.get('http://localhost:4000/logout',{withCredentials : true});
-        setTimeout(()=>{
-            history.push('/login');
-        },400)
+        axios.get('http://localhost:4000/logout',{withCredentials : true})
+        history.push({pathname : '/login' , state : {logout : true}})
         
-        console.log(user);
     }
+     // state notiication
+        const [notification, setnotification] = useState([]);
+        useEffect(()=> {
+            if (userstate.existe) {
+                if (userstate.user.notification) {
+                    setnotification([user.notification[0],user.notification[1]]);
+                }
+            }
+        },[user])
+
     return (
         <nav className="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
@@ -47,30 +54,41 @@ export default function Navbar() {
                                 <h6 className="dropdown-header">
                                     centre d'alertes
                                 </h6>
-                                <Link className="dropdown-item d-flex align-items-center" to="#">
-                                    <div className="mr-3">
-                                        <div className="icon-circle bg-danger">
-                                            <i className="fas fa-file-alt text-white"></i>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <div className="small text-gray-500">12 Mai 2021</div>
-                                        le dossier 32 est bloquée !
-                                    </div>
-                                </Link>
-                                <Link className="dropdown-item d-flex align-items-center" to="#">
-                                    <div className="mr-3">
-                                        <div className="icon-circle bg-success">
-                                            <i className="fas fa-file-alt text-white"></i>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <div className="small text-gray-500"> 7 mai 2021</div>
-                                        le service marchés est terminé avec le dossier 45 !
-                                    </div>
-                                </Link>
+                                {notification.length > 0 && notification.map(notif => {
+                                if (notif.typeof === 'cancel') {
+                                    return (
+                                        <Link className="dropdown-item d-flex align-items-center" to="/notification">
+                                            <div className="mr-3">
+                                                <div className="icon-circle bg-danger">
+                                                    <i className="fas fa-file-alt text-white"></i>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <div className="small text-gray-500">{notif.date}</div>
+                                                {notif.notif}
+                                            </div>
+                                        </Link>
+                                    )
+                                }
+                                if (notif.typeof === 'complete') {
+                                    return (
+                                        <Link className="dropdown-item d-flex align-items-center" to="/notification">
+                                            <div className="mr-3">
+                                                <div className="icon-circle bg-success">
+                                                    <i className="fas fa-file-alt text-white"></i>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <div className="small text-gray-500">{notif.date}</div>
+                                                {notif.notif}
+                                            </div>
+                                        </Link>
+                                    )
+                                }
+                                })
+                                }
                                 
-                                <Link className="dropdown-item text-center small text-gray-500" to="#">afficher tout les alertes</Link>
+                                <Link className="dropdown-item text-center small text-gray-500" to="/notification">afficher tout les alertes</Link>
                             </div>
                             </li>
 

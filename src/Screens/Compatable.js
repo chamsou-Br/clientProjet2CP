@@ -59,7 +59,8 @@ export default function Compatable(props) {
                     decision ,
                     piece_cmpleter,
                     date_cmplement,
-                    date_paiement
+                    date_paiement,
+                    
                 )
                 axios.post(`http://localhost:4000/dossiers/comptable/${id}`,{
                     date_reception,
@@ -69,7 +70,8 @@ export default function Compatable(props) {
                     piece_cmpleter,
                     date_cmplement,
                     date_paiement,
-                    type 
+                    type ,
+                    id : user.user._id
                 }).then(res => dispatch(ModifyDossier(res.data)));
                 history.push('/');
             }

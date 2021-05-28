@@ -1,7 +1,11 @@
 import axios from 'axios';
-import React from 'react'
+import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router';
+import ConsultationCommande from '../Components/ConsultationCommande';
+import ConsultationMarche from '../Components/ConsultationMarche';
+import ConsultationBudget from '../Components/ConsultationBudget'
+import ConsultationCompatibilite from '../Components/ConsultationCompatibilite'
 import Navbar from '../Components/Navbar'
 import ScrollTopButton from '../Components/ScollTopButton'
 import Sidebar from '../Components/Sidebar'
@@ -44,6 +48,8 @@ export default function ConsultationDossier(props) {
         })
         }
 
+        const [consulter , setConsulter] = useState(0);
+
     return (
         <div className='consultation'>
         <ScrollTopButton/>
@@ -53,11 +59,53 @@ export default function ConsultationDossier(props) {
            <div id="content-wrapper" className="d-flex flex-column">
             <div id="content">
             <Navbar />
-            <div className='titleDiv'>
-                <h3 style={{margin : '1rem',textAlign : 'center',marginBottom : '2rem',fontWeight : 'bold',color: "#1c294e"}}>
-                            Consultation
-                </h3>
-            </div>
+
+
+                <div className='servicesName'>
+
+                    {consulter === 0 ? (
+                        <div className='serviceName active'  >
+                            <h3 className='serviceTitle'>marché</h3>
+                        </div>
+                    ) : (
+                        <div className='serviceName' onClick={()=>setConsulter(0)}>
+                            <h3 className='serviceTitle'>marché</h3>
+                        </div>
+                    )}
+                    
+
+                    {consulter === 1 ? (
+                        <div className='serviceName active' >
+                            <h3 className='serviceTitle'>commande</h3>
+                        </div>
+                    ) : (
+                        <div className='serviceName' onClick={()=>setConsulter(1)}>
+                            <h3 className='serviceTitle'>commande</h3>
+                        </div>
+                    )}
+
+                    {consulter === 2 ? (
+                        <div className='serviceName active'>
+                            <h3 className='serviceTitle'>budget</h3>
+                        </div>
+                    ) : (
+                        <div className='serviceName' onClick={()=>setConsulter(2)}>
+                            <h3 className='serviceTitle'>budget</h3>
+                        </div>
+                    )}
+
+                    {consulter === 3 ? (
+                        <div className='serviceName active'>
+                            <h3 className='serviceTitle'>compatibilité</h3>
+                        </div>
+                    ) : (
+                        <div className='serviceName' onClick={()=>setConsulter(3)}>
+                            <h3 className='serviceTitle'>compatibilité</h3>
+                        </div>
+                    )}
+
+                </div>
+
                 <main className="mainclass"  >
 
                   <div className="avencement">
@@ -82,77 +130,16 @@ export default function ConsultationDossier(props) {
                         <br />
                       </div>
                   </div>
-                  <div className="service">
-                    <div style={{width : "100%"}}>
-                       <h1 className="title"> Service Marché </h1>
-                    </div>
-                    <hr className="ligne" />
-                    <div style={{width : '100%'}}>
-                        <h1 className="lbc"> Objet : {Dossier.marche.objet ? (<span>{Dossier.marche.objet}</span>) : (<span>Pas Encore</span>) }</h1>
-                        <h1 className="lbc"> Date de lanecement : {Dossier.marche.date_lancement ? (<span>{Dossier.marche.date_lancement}</span>) : (<span>Pas Encore</span>) }</h1>
-                        <h1 className="lbc"> Date d'ouverture : {Dossier.marche.data_ouverture ? (<span>{Dossier.marche.data_ouverture}</span>) : (<span>Pas Encore</span>) }</h1>
-                        <h1 className="lbc"> Date de transmission au service commande : {Dossier.marche.data_transm ? (<span>{Dossier.marche.data_transm}</span>) : (<span>Pas Encore</span>) }</h1>
-                        <h1 className="lbc"> N° Convention : {Dossier.marche.num_convention ? (<span>{Dossier.marche.num_convention}</span>) : (<span>Pas Encore</span>) }</h1>
-                        <h1 className="lbc"> Duré de traitement du dossie : {Dossier.marche.duree_trait ? (<span>{Dossier.marche.duree_trait}</span>) : (<span>Pas Encore</span>) }</h1>
-                        <h1 className="lbc"> Date d'envoi au service commande : {Dossier.marche.data_transm ? (<span>{Dossier.marche.data_transm}</span>) : (<span>Pas Encore</span>) }</h1>
-                        <h1 className="lbc"> Observation : {Dossier.marche.observation ? (<span>{Dossier.marche.observation}</span>) : (<span>Pas Encore</span>) }</h1>
-                        
-                    </div>
+                  </main>
+                  
 
-                  </div>
-                  <div className="service">
-                    <div style={{width : '100%'}}>
-                        <h1 className="title"> Service Commande </h1>
-                     </div>
-                     <hr className="ligne"/>
-                      <div style={{width : '100%'}}>
-                        <h1 className="lbc"> Date de réception : {Dossier.commande.date_reception ? (<span>{Dossier.commande.date_reception}</span>) : (<span>Pas Encore</span>) }</h1>
-                        <h1 className="lbc"> N° du Facture proforma : {Dossier.commande.num_fact_proforma ? (<span>{Dossier.commande.num_fact_proforma}</span>) : (<span>Pas Encore</span>) }</h1>
-                        <h1 className="lbc"> Date facture proforma : {Dossier.commande.date_fact_proforma ? (<span>{Dossier.commande.date_fact_proforma}</span>) : (<span>Pas Encore</span>) }</h1>
-                        <h1 className="lbc"> Montant : {Dossier.commande.montant ? (<span>{Dossier.commande.montant}</span>) : (<span>Pas Encore</span>) }</h1>
-                        <h1 className="lbc"> N° Bon du commande : {Dossier.commande.num_bon_commande ? (<span>{Dossier.commande.num_bon_commande}</span>) : (<span>Pas Encore</span>) }</h1>
-                        <h1 className="lbc"> Date de bon du commande : {Dossier.commande.date_bon_commande ? (<span>{Dossier.commande.date_bon_commande}</span>) : (<span>Pas Encore</span>) }</h1>
-                        <h1 className="lbc"> Date de réception de la prestation : {Dossier.commande.date_reception_prest ? (<span>{Dossier.commande.date_reception_prest}</span>) : (<span>Pas Encore</span>) }</h1>
-                        <h1 className="lbc"> N° Facture définitive : {Dossier.commande.num_fact_proforma ? (<span>{Dossier.commande.num_fact_proforma}</span>) : (<span>Pas Encore</span>) }</h1>
-                        <h1 className="lbc"> N° Bon de réseption : {Dossier.commande.num_bon_reception ? (<span>{Dossier.commande.num_bon_reception}</span>) : (<span>Pas Encore</span>) }</h1>
-                        <h1 className="lbc"> Date d'envoi au service budjet : {Dossier.commande.date_envoi ? (<span>{Dossier.commande.date_envoi}</span>) : (<span>Pas Encore</span>) }</h1>
-                        <h1 className="lbc"> Duré de traitement du dossie : {Dossier.commande.duree_trait ? (<span>{Dossier.commande.duree_trait}</span>) : (<span>Pas Encore</span>) }</h1>
-                        <h1 className="lbc"> Observation : {Dossier.commande.observation ? (<span>{Dossier.commande.observation}</span>) : (<span>Pas Encore</span>) }</h1>
-                      </div>
+                  {/* Choose a service to consulter */ }
+                  {consulter === 0 ? (<ConsultationMarche Dossier={Dossier} />) : 
+                  consulter === 1 ?  (<ConsultationCommande Dossier={Dossier} />) : 
+                  consulter === 2 ? (<ConsultationBudget Dossier={Dossier} />) : 
+                  (<ConsultationCompatibilite Dossier={Dossier} />) }
 
-                  </div>
-                  <div className="service">
-                    <div style={{widows : '100%'}}>
-                        <h1 className="title"> Service Budjet </h1>
-                     </div>
-                     <hr className="ligne"/>
-                      <div style={{widows : '100%'}}>
-                        <h1 className="lbc"> Date de réception  : {Dossier.budget.date_reception ? (<span>{Dossier.budget.date_reception}</span>) : (<span>Pas Encore</span>) }</h1>
-                        <h1 className="lbc"> Date d'engagement au CF : {Dossier.budget.date_engag_cf ? (<span>{Dossier.budget.date_engag_cf}</span>) : (<span>Pas Encore</span>) }</h1>
-                        <h1 className="lbc"> Motifs de rejet éventuel : {Dossier.budget.motifs_rejet ? (<span>{Dossier.budget.motifs_rejet}</span>) : (<span>Pas Encore</span>) }</h1>
-                        <h1 className="lbc"> Date de Visa/rejet définitif du contrôleur financier : {Dossier.budget.date_visa_rejet ? (<span>{Dossier.budget.date_visa_rejet}</span>) : (<span>Pas Encore</span>) }</h1>
-                        <h1 className="lbc"> Date de mandatement : {Dossier.budget.date_mandatement ? (<span>{Dossier.budget.date_mandatement}</span>) : (<span>Pas Encore</span>) }</h1>
-                        <h1 className="lbc"> Date d'envoi au service Comptable : {Dossier.budget.date_transm ? (<span>{Dossier.budget.date_transm}</span>) : (<span>Pas Encore</span>) }</h1>
-                        <h1 className="lbc"> Duré de traitement du dossie : {Dossier.budget.duree_trait ? (<span>{Dossier.budget.duree_trait}</span>) : (<span>Pas Encore</span>) }</h1>
-                        <h1 className="lbc"> Observation : {Dossier.budget.observation ? (<span>{Dossier.budget.observation}</span>) : (<span>Pas Encore</span>) }</h1>
-                      </div>
 
-                  </div>
-                  <div className="service">
-                    <div style={{width : '100%'}}>
-                        <h1 className="title"> Agence Comptable </h1>
-                     </div>
-                     <hr className="ligne" />
-                      <div style={{width : '100%'}}>
-                        <h1 className="lbc"> Date de réception  : {Dossier.comptable.date_reception ? (<span>{Dossier.comptable.date_reception}</span>) : (<span>Pas Encore</span>) }</h1>
-                        <h1 className="lbc"> Pieces a completer : {Dossier.comptable.piece_cmpleter ? (<span>{Dossier.comptable.piece_cmpleter}</span>) : (<span>Pas Encore</span>) }</h1>
-                        <h1 className="lbc"> Date de complément du dossier : {Dossier.comptable.date_cmplement ? (<span>{Dossier.comptable.date_cmplement}</span>) : (<span>Pas Encore</span>) }</h1>
-                        <h1 className="lbc"> Date de peiment  : {Dossier.comptable.date_paiement ? (<span>{Dossier.comptable.date_paiement}</span>) : (<span>Pas Encore</span>) }</h1>
-                        <h1 className="lbc"> Duré de traitement du dossie : {Dossier.comptable.duree_trait ? (<span>{Dossier.comptable.duree_trait}</span>) : (<span>Pas Encore</span>) }</h1>
-                        <h1 className="lbc"> Observation : {Dossier.comptable.observation ? (<span>{Dossier.comptable.observation}</span>) : (<span>Pas Encore</span>) }</h1>
-                      </div>
-
-                  </div>
                   <div className="service" style={{height : '400px'}}>
                     <div style={{width : '100%'}}>
                         <h1 className="title"> OBSERVATIONS GÉNÉRALES
@@ -165,7 +152,7 @@ export default function ConsultationDossier(props) {
 
                   </div>
                   <br/><br/><br/>
-                </main>
+                
         </div>
         </div>
         </div>

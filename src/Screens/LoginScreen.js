@@ -4,11 +4,11 @@ import '../Bootstrab/login/sb-admin-2.css'
 import {useGoogleLogin} from 'react-google-login' 
 import ScrollTopButton from '../Components/ScollTopButton';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from 'react-router';
+import { useHistory, useLocation } from 'react-router';
 import { AddUser } from '../Redux/FunctionRedux/User';
 const clientId = "953077210388-hrrqunh00aerbng60d4firkbdh2954q3.apps.googleusercontent.com";
 
- const  LoginScreen = () => {
+ const  LoginScreen = (props) => {
 
     const [email , setEmail] = useState('');
     const [password , setPassword] = useState('');
@@ -27,18 +27,25 @@ const clientId = "953077210388-hrrqunh00aerbng60d4firkbdh2954q3.apps.googleuserc
     console.log(JSON.parse( localStorage.getItem('user_projet_2cp')))
     const dispatch = useDispatch();
     const history = useHistory();
+    const location = useLocation();
 
     // check user
-   axios.get("http://localhost:4000/checkUser",{withCredentials : true}).then(res => {
-        console.log(res.data,'server');
-    if (res.data.existe) {
-        dispatch(AddUser(res.data.user));
-        history.push('/');
+    if (!location.state) {
+        axios.get("http://localhost:4000/checkUser",{withCredentials : true}).then(res => {
+            if (res.data.existe) {
+                console.log('login false')
+                dispatch(AddUser(res.data.user));
+                history.push('/');
+            }
+            })
     }
-    })
-    if (user.existe) {
-        history.push('/');
-    }
+
+        if (user.existe) {
+            console.log('login false2')
+            history.push('/');
+        }
+
+
 
 
 
