@@ -7,7 +7,7 @@ import { ADD_DOSSIER, INIT_DOSSIERS, MODIFY_DOSSIER } from "../ActionsName/Dossi
         case ADD_DOSSIER : 
             return {...state , existe : true , Dossiers : [...state.Dossiers , action.payload] }
         case MODIFY_DOSSIER : 
-            return {...state , Dossiers : [state.Dossiers.filter(doc => doc._id.toString() !== action.payload._id.toString()),action.payload]}
+            return {...state , Dossiers : [...state.Dossiers.filter(doc => doc._id.toString() !== action.payload._id.toString()),action.payload]}
         default : 
             return state 
     }

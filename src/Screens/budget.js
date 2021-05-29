@@ -68,7 +68,8 @@ export default function Budget(props) {
                 date_mandatement,
                 date_transm,
                 type ,
-                id : user.user._id
+                id : user.user._id,
+                idDossier : id
             }).then(res => dispatch(ModifyDossier(res.data)));
             history.push('/');
         }

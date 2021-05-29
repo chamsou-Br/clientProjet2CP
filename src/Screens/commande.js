@@ -1,9 +1,10 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { useHistory } from 'react-router'
+import { Link, useHistory } from 'react-router-dom';
 import '../Bootstrab/Acceil/sb-admin-2.css'
 import Navbar from '../Components/Navbar'
+import ScrollTopButton from '../Components/ScollTopButton';
 import Sidebar from '../Components/Sidebar'
 import esiImage from '../images/esi_white.png'
 import profileImage  from '../images/undraw_profile.svg'
@@ -90,7 +91,8 @@ export default function Commande(props) {
             num_fact_definitive,
             num_bon_reception,
             type,
-            id : user.user._id
+            id : user.user._id,
+            idDossier : id
         }).then(res => dispatch(ModifyDossier(res.data)));
         axios.get('http://localhost:4000/indexe').then(res => {
             console.log(res.data);
@@ -100,6 +102,7 @@ export default function Commande(props) {
 
     return (
         <div className='commande'>
+        <ScrollTopButton />
             <div id="wrapper">
            <Sidebar />
                <div id="content-wrapper" className="d-flex flex-column">

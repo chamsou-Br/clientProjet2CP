@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router';
+import { Link } from 'react-router-dom';
 import Navbar from '../Components/Navbar'
 import ScrollTopButton from '../Components/ScollTopButton'
 import Sidebar from '../Components/Sidebar'
@@ -50,10 +51,11 @@ function Notification() {
                              </h3>
                             <div id='main'>
 
-                            {notification.length > 0 && notification.map(notif => {
+                            {notification.length > 0 && notification.map((notif,ind) => {
                                 if (notif.typeof === 'cancel') {
                                     return (
-                                    <div className='notif'>
+                                    <Link to={`/consultation/${notif.idDossier}`}>
+                                    <div  className='notif' key={ind}>
                                         <div className='circle icon-circle bg-danger'>
                                            <i style={{fontSize : '1.4rem'}} className="fas fa-file-alt text-white"></i>
                                         </div>
@@ -67,11 +69,13 @@ function Notification() {
                                             </button>
                                         </div>
                                     </div>
+                                    </Link>
                                 )
                                 }else {
                                     if (notif.typeof === 'complete') {
                                         return(
-                                            <div className='notif'>
+                                            <Link to={`/consultation/${notif.idDossier}`}>
+                                            <div className='notif' key={ind}>
                                                 <div className='circle icon-circle bg-success'  >
                                                      <i  style={{fontSize : '1.4rem'}} className="fas fa-file-alt text-white"></i>
                                                 </div>
@@ -85,6 +89,7 @@ function Notification() {
                                                     </button>
                                                 </div>
                                             </div>
+                                            </Link>
 
                                         )
                                     }

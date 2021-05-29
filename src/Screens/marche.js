@@ -88,8 +88,9 @@ const Marche = (props) => {
             num_convention,
             respo_dossier,
             type,
-            id : user.user._id
-        }).then(res => dispatch(ModifyDossier(res.data)));
+            id : user.user._id,
+            idDossier : id
+        }).then(res => {dispatch(ModifyDossier(res.data))});
         history.push('/');
     }
 
@@ -116,9 +117,9 @@ const Marche = (props) => {
                      <div><label htmlFor="type">Type de prestation</label></div>
                      <div >
                       <select className='selectMarch' name="type" id="type"  onChange={(e) => settype_prestation(e.target.value)}>
-                        <option value="volvo">Marchés</option>
-                        <option value="saab">Consultation</option>
-                        <option value="opel">Gré-à-Gré</option>
+                        <option value="Marchés">Marchés</option>
+                        <option value="Consultation">Consultation</option>
+                        <option value="Gré-à-Gré">Gré-à-Gré</option>
                      </select>
                      </div>
                       </div>

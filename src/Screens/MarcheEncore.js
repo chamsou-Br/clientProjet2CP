@@ -96,7 +96,7 @@ function MarcheEncore() {
                                   </tfoot>
                                   
                                   <tbody>
-                                  {Dossiers.length > 1 && Dossiers.map(doc => {
+                                  {Dossiers.length > 0 && Dossiers.map(doc => {
                                       return(
                                       <tr key={doc._id}>
                                           <td>{doc.num_dossier}</td>

@@ -24,10 +24,19 @@ export default function Navbar() {
     }
      // state notiication
         const [notification, setnotification] = useState([]);
+        const [notired , setnotifred] = useState(false);
+
+        const checknotif = () => {
+            setnotifred(false);
+            axios.post('http://localhost:4000/chechNotif',{id : user._id});
+        }
         useEffect(()=> {
             if (userstate.existe) {
-                if (userstate.user.notification) {
+                setnotifred(user.isnotif);
+                if (user.notification) {
+                    if (user.notification.length >1)
                     setnotification([user.notification[0],user.notification[1]]);
+                    else {if(user.notification.length >0) setnotification([user.notification[0]]); }
                 }
             }
         },[user])
@@ -43,21 +52,27 @@ export default function Navbar() {
                         </button>                    
 
                         <ul className="navbar-nav ml-auto">
-
+                        
+                     <div onClick={(e)=>checknotif()}>
                         <li className="nav-item dropdown no-arrow">
-                                <Link className="nav-link dropdown-toggle" to="#" id="userDropdown" role="button"
+                        
+                                <div  className="nav-link dropdown-toggle"   id="userDropdown" role="button"
                                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <Bell color='black' size={30} />
-                                </Link>
+                                        <i   className="fas fa-bell fa-fw"></i>                        
+                                    {notired && <span style={{width : '0.4rem' , height : '0.4rem' ,
+                                     background : 'red' ,marginTop : '0.2rem' , borderRadius : '100%'    }}>
+                                    </span> }
+                                    
+                                </div>
                                 <div className="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="alertsDropdown">
                                 <h6 className="dropdown-header">
                                     centre d'alertes
                                 </h6>
-                                {notification.length > 0 && notification.map(notif => {
+                                {notification.length > 0 && notification.map((notif,ind) => {
                                 if (notif.typeof === 'cancel') {
                                     return (
-                                        <Link className="dropdown-item d-flex align-items-center" to="/notification">
+                                        <Link key={ind} className="dropdown-item d-flex align-items-center" to={`/consultation/${notif.idDossier}`}>
                                             <div className="mr-3">
                                                 <div className="icon-circle bg-danger">
                                                     <i className="fas fa-file-alt text-white"></i>
@@ -69,10 +84,10 @@ export default function Navbar() {
                                             </div>
                                         </Link>
                                     )
-                                }
+                                }else {
                                 if (notif.typeof === 'complete') {
                                     return (
-                                        <Link className="dropdown-item d-flex align-items-center" to="/notification">
+                                        <Link key={ind} className="dropdown-item d-flex align-items-center" to={`/consultation/${notif.idDossier}`}>
                                             <div className="mr-3">
                                                 <div className="icon-circle bg-success">
                                                     <i className="fas fa-file-alt text-white"></i>
@@ -84,13 +99,15 @@ export default function Navbar() {
                                             </div>
                                         </Link>
                                     )
-                                }
-                                })
+                                }}
+                                }) 
                                 }
                                 
                                 <Link className="dropdown-item text-center small text-gray-500" to="/notification">afficher tout les alertes</Link>
                             </div>
+                            
                             </li>
+                            </div>
 
                             <li className="nav-item dropdown no-arrow d-sm-none">
                                 <Link className="nav-link dropdown-toggle" to="#" id="searchDropdown" role="button"
