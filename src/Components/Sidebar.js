@@ -67,7 +67,7 @@ export default function Sidebar(props) {
                         <div className="bg-white py-2 collapse-inner rounded">
                             <h6 className="collapse-header">mise à jour disponible:</h6>
                             {userstate.existe ?
-                            user.service === 'ordonnateur' ? (
+                            user.service === 'ordonnateur'  ? (
                                 <>
                                 <Link className="collapse-item" to={`/marche/edit`} >marche</Link>
                                 <Link className="collapse-item" to={`/commande/edit`} >commande</Link>
@@ -75,7 +75,8 @@ export default function Sidebar(props) {
                                 <Link className="collapse-item" to={`/compatable/edit`} >compatable</Link>
                                 </>
                                 ) :
-                             user.compte.includes('miseAjour') && (
+
+                             user.service != 'adminstration' && user.compte.includes('miseAjour') && (
                                 <Link className="collapse-item" to={`/${user.service}/edit`} >{user.service}</Link>
                             ) : null }
                             
@@ -88,6 +89,15 @@ export default function Sidebar(props) {
                     <Link className="nav-link" to="charts.html">
                         <i className="fas fa-fw fa-clipboard"></i>
                         <span>Statistiques</span></Link>
+                </li>
+
+                <li className="nav-item">
+                    {userstate.existe ? user.service === 'adminstration'   ? (
+                        <Link className="nav-link" to="/users">
+                        <i className="fas fa-fw fa-user"></i>
+                        <span>Comptes</span></Link>
+                    ) : null : null}
+  
                 </li>
 
                 <li className="nav-item">

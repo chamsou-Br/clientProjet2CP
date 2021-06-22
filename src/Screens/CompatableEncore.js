@@ -37,6 +37,9 @@ function CompatableEncore() {
         if (user.user.service != 'compatable' && user.user.service != 'ordonnateur')  {
             history.push('/')
         }
+        if (!user.user.compte.includes('miseAjour')&& user.user.service != 'ordonnateur') {
+            history.push('/')
+        }
     }
     },[user])
 

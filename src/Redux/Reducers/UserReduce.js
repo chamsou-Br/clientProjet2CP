@@ -1,6 +1,6 @@
 import { LOG_IN, LOG_OUT } from "../ActionsName/User"
 
-export const UserReduce = (state = {existe : false , user : {}},action) => {
+export const UserReduce = (state = {err : false,existe : false , user : {}},action) => {
 
     switch (action.type)  {
         case LOG_IN : 

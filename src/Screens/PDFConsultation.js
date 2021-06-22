@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from 'react-router';
+import { useHistory, useLocation } from 'react-router';
 import ConsultationCommande from '../Components/ConsultationCommande';
 import ConsultationMarche from '../Components/ConsultationMarche';
 import ConsultationBudget from '../Components/ConsultationBudget'
@@ -12,7 +12,7 @@ import Sidebar from '../Components/Sidebar'
 import { AddUser } from '../Redux/FunctionRedux/User';
 import ReactToPdf from 'react-to-pdf' ;
 
-export default function ConsultationDossier(props) {
+export default function PDFConsultationDossier(props) {
 
     // get dossier to consulter
     const history = useHistory() ;
@@ -21,9 +21,7 @@ export default function ConsultationDossier(props) {
     const Docs = useSelector(state => state.dossiers.Dossiers)
     const Dossier = Docs.filter(doc =>{console.log(doc._id,id) ;return doc._id === id})[0];
     const dispatch = useDispatch();
-    const [pdf , setpdf]  = useState(false);
     const user = useSelector(state => state.user)
-
     const Avancement = () => {
         var AVANC = 0;
         if (Dossier.finish) return 100
@@ -45,8 +43,7 @@ export default function ConsultationDossier(props) {
             }else {
                 history.push('/login');
             }
-        })        }
-   const [consulter , setConsulter] = useState(0);
+        })}
 
    useEffect(()=> {
        if (user.existe) {
@@ -63,71 +60,26 @@ export default function ConsultationDossier(props) {
 };
 
     return (
-        <div className='consultation' >
+        
+    <div>
+        <div className='consultation'>
         <ScrollTopButton/>
                 <div id="wrapper">
             
             <Sidebar />
            <div id="content-wrapper" className="d-flex flex-column">
-            <div id="content"   >
+            <div id="content"  >
             <Navbar />
-            <ReactToPdf targetRef={ref} onComplete={()=> setpdf(false)}  filename="dossier.pdf" options={options} x={.1} y={.1} scale={0.8}>
+            <ReactToPdf targetRef={ref}  filename="dossier.pdf" options={options} x={.1} y={.1} scale={0.8}>
                 {({toPdf}) => (
-                          <button 
-                          className='pdf'
-                          onClick={()=>{setpdf(true);toPdf()}}>telécharger PDF</button>
+                          <button onClick={toPdf}>telécharger PDF</button>
                 )}
                 
             </ReactToPdf>
-                <div className='servicesName'  >
-
-                    {consulter === 0 ? (
-                        <div className='serviceName active'  >
-                            <h3 className='serviceTitle'>marché</h3>
-                        </div>
-                    ) : (
-                        <div className='serviceName' onClick={()=>setConsulter(0)}>
-                            <h3 className='serviceTitle'>marché</h3>
-                        </div>
-                    )}
-                    
-
-                    {consulter === 1 ? (
-                        <div className='serviceName active' >
-                            <h3 className='serviceTitle'>commande</h3>
-                        </div>
-                    ) : (
-                        <div className='serviceName' onClick={()=>setConsulter(1)}>
-                            <h3 className='serviceTitle'>commande</h3>
-                        </div>
-                    )}
-
-                    {consulter === 2 ? (
-                        <div className='serviceName active'>
-                            <h3 className='serviceTitle'>budget</h3>
-                        </div>
-                    ) : (
-                        <div className='serviceName' onClick={()=>setConsulter(2)}>
-                            <h3 className='serviceTitle'>budget</h3>
-                        </div>
-                    )}
-
-                    {consulter === 3 ? (
-                        <div className='serviceName active'>
-                            <h3 className='serviceTitle'>comptabilité</h3>
-                        </div>
-                    ) : (
-                        <div className='serviceName' onClick={()=>setConsulter(3)}>
-                            <h3 className='serviceTitle'>comptabilité</h3>
-                        </div>
-                    )}
-
-                </div>
-                <div ref={ref} >
-
+                <div  ref={ref}  >
                 <main className="mainclass"  >
 
-                  <div className="avencement"  >
+                  <div className="avencement" >
                       <div className="divt">
                         <h1 className="lbc"> Numéro de dossier : <span>{Dossier.num_dossier} </span></h1>
                         <h1 className="lbc"> Type de prestation : <span>{Dossier.marche.type_prestation} </span> </h1>
@@ -152,18 +104,12 @@ export default function ConsultationDossier(props) {
                   </main>
                   
 
-                  {/* Choose a service to consulter */ }
-                  {consulter === 0 ? (<ConsultationMarche  ref={ref} Dossier={Dossier} />) : 
-                  consulter === 1 ?  (<ConsultationCommande  ref={ref} Dossier={Dossier} />) : 
-                  consulter === 2 ? (<div ref={ref}><ConsultationBudget  ref={ref} Dossier={Dossier} /></div>) : 
-                  (<ConsultationCompatibilite  ref={ref} Dossier={Dossier} />) }
-                  
-                  {consulter != 0 && pdf && (<ConsultationMarche  ref={ref} Dossier={Dossier} />) }
-                  {consulter != 1 && pdf  &&  (<ConsultationCommande  ref={ref} Dossier={Dossier} />)} 
-                  {consulter != 2 && pdf  && (<ConsultationBudget  ref={ref} Dossier={Dossier} />)} 
-                  {consulter != 3 && pdf && (<ConsultationCompatibilite  ref={ref} Dossier={Dossier} />) }
+                   <ConsultationMarche Dossier={Dossier}  />
+                   <ConsultationCommande Dossier={Dossier} />
+                   <ConsultationBudget Dossier={Dossier} />
+                   <ConsultationCompatibilite Dossier={Dossier} />
 
-                  <div   className="service" style={{height : '400px'}} >
+                  <div className="service" style={{height : '400px'}} ref={ref}>
                     <div style={{width : '100%'}}>
                         <h1 className="title"> OBSERVATIONS GÉNÉRALES
                         </h1>
@@ -177,6 +123,7 @@ export default function ConsultationDossier(props) {
                   <br/><br/><br/>
                   </div>
                 
+        </div>
         </div>
         </div>
         </div>

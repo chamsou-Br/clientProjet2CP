@@ -127,20 +127,21 @@ export default function Navbar() {
                                             <span className="mr-2 d-none d-lg-inline text-gray-600 small">{user.username}</span>
                                         )
                                     }
+                                    {userstate.user.isImageSocial && (
+                                            <img className="img-profile rounded-circle" src={userstate.user.imageSocial} />
+                                        )}
+                                    {!userstate.user.isImageSocial && (
+                                            <img className="img-profile rounded-circle" src={profileImage} />
+                                        )}
                                     
-                                    <img className="img-profile rounded-circle"
-                                        src={profileImage} />
                                 </Link>
                                 <div className="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                     aria-labelledby="userDropdown">
-                                    <Link className="dropdown-item" to="#">
+                                    <Link className="dropdown-item" to="/profile">
                                         <i className="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                         Profile
                                     </Link>
-                                    <Link className="dropdown-item" to="#">
-                                        <i className="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                                        paramètres
-                                    </Link>
+                                    
                                     <div className="dropdown-divider"></div>
                                     <Link onClick={(e) => Logout_Handler(e)} className="dropdown-item" to="/login"  data-target="#logoutModal">
                                         <i className="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>

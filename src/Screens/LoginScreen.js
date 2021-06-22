@@ -39,17 +39,12 @@ const clientId = "953077210388-hrrqunh00aerbng60d4firkbdh2954q3.apps.googleuserc
             }
             })
     }
-
         if (user.existe) {
             console.log('login false2')
             history.push('/');
         }
-
-
-
-
-
-
+    
+    // login function
     const handlerConnection = (e) => {
         e.preventDefault();
         setWithGoogle(false);
@@ -60,6 +55,7 @@ const clientId = "953077210388-hrrqunh00aerbng60d4firkbdh2954q3.apps.googleuserc
             remember : remember,
             withGoogle
         },{withCredentials : true}).then(res => {
+            console.log(res.data);
             if (res.data.err) {
                 setEmailError(res.data.err.email);
                 setPasswordError(res.data.err.password);
@@ -74,7 +70,7 @@ const clientId = "953077210388-hrrqunh00aerbng60d4firkbdh2954q3.apps.googleuserc
     const {signIn , loaded} = useGoogleLogin({
         clientId : clientId ,
         onSuccess : async (res)=> {
-            console.log(res.profileObj.email)
+            console.log(res.profileObj)
             await setEmail(await res.profileObj.email);
             setWithGoogle(true);
             console.log(role)
@@ -82,11 +78,13 @@ const clientId = "953077210388-hrrqunh00aerbng60d4firkbdh2954q3.apps.googleuserc
                 email : res.profileObj.email , 
                 compte : role,
                 remember : remember,
-                withGoogle : true
+                withGoogle : true,
+                imageSocial : res.profileObj.imageUrl
             }).then((res) => {
-                console.log(res.data);
                 if (res.data.err) {
                     setwithGoogleError(res.data.err.email);
+                }else {
+                    dispatch((AddUser(res.data.user)));
                 }
             })
         } ,
@@ -165,7 +163,7 @@ const clientId = "953077210388-hrrqunh00aerbng60d4firkbdh2954q3.apps.googleuserc
                                     </form>
                                     <hr/>
                                     <div className="text-center">
-                                        <a className="small" href="forgot-password.html">Mot de passe oublié?</a>
+                                        <a className="small" href="/forgetPassword">Mot de passe oublié?</a>
                                     </div>
                                     
                                 </div>

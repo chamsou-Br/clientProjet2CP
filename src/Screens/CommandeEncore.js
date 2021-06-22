@@ -38,6 +38,9 @@ function CommandeEncore() {
             if (user.user.service != 'commande' && user.user.service != 'ordonnateur')  {
                 history.push('/')
             }
+            if (!user.user.compte.includes('miseAjour') && user.user.service != 'ordonnateur') {
+                history.push('/')
+            }
         }
     },[user])
  

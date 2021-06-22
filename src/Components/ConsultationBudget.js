@@ -6,12 +6,13 @@ function ConsultationBudget(props) {
 
     return (
         <>
+        <div >
             <h1 className='titleTable'>Service Budget</h1>   
             <div className="table-responsive service">
                         <table className="table table-bordered" id="dataTable" width="100%" cellSpacing="0">
                             <thead>
                                 <tr>
-                                    <th>Objet</th>
+                                    <th>champ</th>
                                     <th></th>
                                 </tr>
                             </thead>
@@ -50,6 +51,7 @@ function ConsultationBudget(props) {
                                 </tr>
                             </tbody>
                     </table>
+                    </div>
                     </div>
 
         </>

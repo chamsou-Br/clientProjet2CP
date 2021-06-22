@@ -1083,4 +1083,617 @@ box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 }
 
+ /* ------------------------------------------- */
+            /* profile Screen */
+/* ------------------------------------------- */ 
 
+
+.profile .servicesName {
+  display: flex;
+  width: 100%;
+  margin-left: 0rem;
+
+}
+.profile .serviceName {
+  background-color: #FFF;
+  border: 0.1rem solid rgb(207, 204, 204);
+  border-bottom-color: rgb(207, 204, 204);
+  padding: 0.6rem 0rem;
+  text-align: center;
+  flex: 1;
+  cursor: pointer;
+}
+.profile .serviceName.active {
+  background-color: #1c294e;
+  color: #FFF;
+}
+
+.profile .serviceTitle {
+  color: #1c294e;
+  font-size: 1.1rem;
+  font-weight: bold;
+  text-align: center;
+}
+.profile .serviceName.active .serviceTitle {
+  color: #FFF;
+  text-align: center;
+}
+
+@media only screen and (min-width:870px) and (max-width:2000px) {
+
+  .profile .servicesName {
+    margin-left: 3rem;
+    width: 40%;
+  }
+
+  .profile .navclass{
+    width: 100%;
+    height: 90px;
+   
+  }
+  .profile .mainclass{
+    height: auto;
+    width: 96%;
+    margin-left: 2%;
+    background: url('./images/site-background.jpg');
+    border-radius: 5px;
+    border-color: rgb(207, 204, 204);
+    display: block;
+  }
+ 
+  .profile .div1{
+     width: 100%;
+     height: 110px;
+     
+  }
+
+  .profile .div2{
+   width: 100%;
+   display: flex;
+   text-align: center;
+  }
+ 
+ .profile .write{
+   font-size: 40px;
+   color: #3f589c;
+   padding-left: 6%;
+   padding-top: 2.5%;
+ }
+
+ .profile .divbut{
+   display: block;
+   width: 19%;
+ }
+
+ .profile .ligne{
+   width: 55%;
+   height: 50px; 
+   border-bottom: solid 1.6px rgb(207, 204, 204) ;
+ }
+
+ .profile .bor{
+   width: 100%;
+   height:5px ;
+   border-color:rgb(207, 204, 204);
+   border-style: solid;
+   border-width: 0.6px;
+   color: #3f589c;
+   background-color: white;
+ }
+
+ .profile .but{
+    width: 100%;
+    height:45px ;
+    border-color:rgb(207, 204, 204);
+    border-style: solid;
+    border-width: 0.6px;
+    color: #3f589c;
+    font-size: 20px;
+    font-weight: bold;
+    background-color: white;
+    padding-bottom: 10px;
+ }
+
+ 
+ .profile .div3{
+   width: 100%;
+   height: 620px;
+   display: flex;
+ }
+
+ .profile .div31{
+   width: 30%;
+   height: 620px;
+   margin-left: 6%;
+   position: relative;
+ }
+
+ .profile .div32{
+   height: 620px;
+   width: 64%;
+   
+ }
+
+ .profile .div311{
+   width: 50%;
+   height: 220px;
+   position: absolute;
+   top: 10%;
+   display: block;
+ }
+
+ 
+ .profile .imgprofile{
+   width: 160px;
+   height: 160px;
+   border-radius: 50%;
+   margin-bottom: 20px;
+ }
+
+ .profile .enr{
+   width: 25% !important;
+   margin-left: 45% !important;
+ }
+ 
+ .profile .change{
+   width: 80%;
+   height: 30px;
+   border:solid 2px rgb(207, 204, 204);
+   border-radius: 7px;
+   background-color: white;
+   color: #3f589c;
+   font-weight: 600;
+ }
+
+ .profile .trt{
+  
+   height: 70px;
+   width: 100%;
+ }
+
+ .profile .th1{
+   height: 70px;
+   width: 16%;
+ }
+
+ .profile .th2{
+   
+   height: 70px;
+   width: 70%;
+ }
+
+ .profile label{
+   font-weight: 500;
+   color:#3f589c ;
+ }
+
+ .profile input{
+   
+   width: 80%;
+   border: 1px solid #DCDCDC;
+   border-radius: 3px;
+    padding: 2% 3%;
+   box-sizing: border-box;
+   background-color: #DCDCDC;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+ }
+
+ 
+ .profile .mainclass hr{
+   width: 80%;
+   height: 2px;
+   background-color: rgb(207, 204, 204);
+   margin-left:2.5% ;
+ }
+ .profile .compte input {
+  width: auto;
+ box-sizing: border-box;
+ margin-top: 0.3rem;
+ margin-right:1rem;
+}
+.profile .compte label {
+  margin-right: 3rem;
+}
+ }
+ 
+ @media only screen and (min-width:350px) and (max-width:870px) {
+  .profile .navclass{
+     width: 100%;
+     height: 90px;
+    
+   }
+
+   .profile .mainclass{
+     height: auto;
+     width: 96%;
+     margin-left: 2%;
+     background: url('./images/site-background.jpg');
+     border-radius: 5px;
+     border-color: rgb(207, 204, 204);
+     display: block;
+   }
+  
+   .profile  .div1{
+      width: 100%;
+      height: 80px;
+      
+   }
+
+   .profile .div2{
+    width: 100%;
+    height: 50px;
+    display: flex;
+   }
+
+   .profile   .write{
+    font-size: 1.5rem;
+    color: #3f589c;
+    padding-left: 10%;
+    padding-top: 2.5%;
+  }
+
+  .profile .divbut{
+    display: block;
+    width: 40%;
+  }
+
+  .profile .ligne{
+    display: none;
+  }
+
+  .profile .bor{
+    width: 100%;
+    height:5px ;
+    border-color:rgb(207, 204, 204);
+    border-style: solid;
+    border-width: 0.6px;
+    color: #3f589c;
+    background-color: white;
+  }
+
+  .profile .but{
+     width: 100%;
+     height:45px ;
+     border-color:rgb(207, 204, 204);
+     border-style: solid;
+     border-width: 0.6px;
+     color: #3f589c;
+     font-size: 20px;
+     font-weight: bold;
+     background-color: white;
+     padding-bottom: 10px;
+  }
+
+  
+  .profile .div3{
+    width: 100%;
+    height: 840px;
+    display: block;
+  }
+
+  .profile .div31{
+    width: 100%;
+    height: 220px;
+    margin-top: 30px;
+  }
+
+  .profile .div32{
+    height: 620px;
+    width: 100%;
+    
+  }
+
+  .profile .div311{
+    width: 160px;
+    height: 220px;
+    margin-left: 32%;
+    display: block;
+  }
+  
+  .profile .imgprofile{
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    margin-bottom: 20px;
+  }
+
+  .profile .enr{
+    width: 30% !important;
+    margin-left: 50% !important;
+    font-size: 12px !important;
+  }
+  
+
+  .profile .change{
+    width: 100%;
+    height: 30px;
+    border:solid 2px rgb(207, 204, 204);
+    border-radius: 7px;
+    background-color: white;
+    color: #3f589c;
+    font-weight: 600;
+  }
+
+  .profile .trt{
+    height: 70px;
+    width: 100%;
+  }
+
+  .profile table{
+    width: 90%;
+    margin-left: 8%;
+  }
+
+  .profile .th1{
+    height: 70px;
+    width: 30%;
+  }
+
+  .profile .th2{
+    height: 70px;
+    width: 70%;
+  }
+
+  .profile label{
+    font-weight: 500;
+    color:#3f589c ;
+  }
+
+  .profile input{
+    outline: none;
+    width: 80%;
+    border:solid 1px rgb(207, 204, 204);
+   border: 1px solid #DCDCDC;
+   border-radius: 3px;
+    padding: 2% 2%;
+   box-sizing: border-box;
+   background-color: #DCDCDC;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+  
+  .profile .mainclass hr{
+    width: 70%;
+    height: 2px;
+    background-color: rgb(207, 204, 204);
+    margin-left:15% ;
+  }
+  .profile .compte input {
+    width: auto;
+   box-sizing: border-box;
+   margin-top: 0.3rem;
+   margin-right:0.3rem;
+   font-size: 0.3rem;
+  }
+  .profile .compte label {
+    margin-right: 0.3rem;
+  }
+ 
+  }
+
+  .profile .none {
+    display: none;
+  }
+  .profile .change:disabled {
+    opacity: 0.7;
+  }
+  
+ /* ------------------------------------------- */
+            /* Users Screen */
+/* ------------------------------------------- */ 
+
+
+@media only screen and (max-width:2000px) and (min-width:1100px)
+{
+  .users  .navclass{
+    width: 100%;
+    height: 80px;
+    border-bottom: solid 2px rgb(212, 212, 212);
+  }
+
+  .users  .d1{
+   width: 100%;
+   height: 95px;
+   text-align: center;
+   font-weight: 400;
+   font-size: 40px;
+   color: rgb(65, 65, 133);
+   padding-top: 20px;
+ }
+
+  .users   .d2{
+    width: 100%;
+    height: auto;
+    background-color: white;
+
+  }
+
+   .users  .prof{
+    width: 95%;
+    margin: auto;
+    height: 70px;
+    display: flex;
+    border-radius: 10px;
+    background: url('./images/site-background.jpg');
+    overflow: hidden;
+    border: solid 2px rgb(212, 212, 212);
+  }
+    .users .prof .imagdiv {
+      margin: auto;
+      margin-left: 0.4rem;
+    }
+   .users  .prof img{
+     text-align: center;
+       width: 60px;
+       height: 60px;
+       border-radius: 100%;
+       object-fit: cover;
+  }
+
+   .users  .d3{
+      width: 30%;
+      height: 70px;
+      display: block;
+  }
+
+   .users  .nom{
+      width: 100%;
+      height: 40px;
+      margin:0px;
+      color: rgb(65, 65, 133);
+      padding-left: 10%;
+      font-size: 22px;
+      font-weight: 500;
+  }
+
+   .users  .srv{
+     width: 70%;
+     height: 70px;
+     color: rgb(65, 65, 133);
+     font-weight: 500;
+     font-size: 22px;
+     padding-top: 30px;
+  }
+
+   .users  .dat{
+     width: 100%;
+     height: 30px;
+     margin: 0px;
+     color: rgb(65, 65, 133);
+     font-weight: 500;
+     padding-left: 10%;
+     padding-top: 15px;
+     font-size: 13px;
+    
+  }
+
+   .users  .disp{
+    display: none;
+  }
+}
+
+@media only screen and (min-width:250px) and (max-width:1100px)
+{
+  .users  .disp{
+     height:70px;
+     display: block;
+     width: inherit;
+     text-align: center;
+  }
+
+   .users  .ph{
+    width: 100%;
+    height: 33%;
+    font-weight: 500;
+    font-size: 15px;
+    color: rgb(65, 65, 133);
+  }
+
+   .users  .navclass{
+    width: 100%;
+    height: 80px;
+    border-bottom: solid 2px rgb(212, 212, 212);
+  }
+
+  .users  .d1{
+   width: 100%;
+   height: 95px;
+   text-align: center;
+   font-weight: 400;
+   font-size: 30px;
+   color: rgb(65, 65, 133);
+   padding-top: 20px;
+ }
+
+  .users   .d2{
+    width: 100%;
+    height: auto;
+    background-color: white;
+
+  }
+
+   .users  .prof{
+    width: 95%;
+    margin: auto;
+    height: 70px;
+    display: flex;
+    border-radius: 10px;
+    overflow: hidden;
+    border: solid 2px rgb(212, 212, 212);
+  }
+
+  .users .prof .imagdiv {
+    margin: auto;
+    margin-left: 0.4rem;
+  }
+
+   .users  .prof img{
+       width: 70px;
+       height: 70px;
+       border-radius: 8px;
+       object-fit: cover;
+  }
+
+   .users  .d3{
+      width: 30%;
+      height: 70px;
+      display: none;
+  }
+
+   .users  .nom{
+      width: 100%;
+      height: 40px;
+      margin:0px;
+      color: rgb(65, 65, 133);
+      padding-left: 10%;
+      font-size: 22px;
+      font-weight: 500;
+  }
+
+   .users  .srv{
+     width: 70%;
+     height: 70px;
+     color: rgb(65, 65, 133);
+     font-weight: 500;
+     font-size: 22px;
+     padding-top: 30px;
+     display: none;
+  }
+
+   .users  .dat{
+     width: 100%;
+     height: 30px;
+     margin: 0px;
+     color: rgb(65, 65, 133);
+     font-weight: 500;
+     padding-left: 10%;
+     padding-top: 15px;
+     font-size: 13px;
+    
+  }
+
+}
+
+
+
+ /* ------------------------------------------- */
+            /* pasword Screen */
+/* ------------------------------------------- */ 
+  
+ 
+
+.password input:disabled , .password a.disabled, .password a.disabledd {
+  opacity: 0.4;
+}
+
+  .pdf {
+    background-color: #1c294e;
+    border: 0.1rem solid #FFF;
+    padding: 0.4rem 0.2rem;
+    margin-left: 3rem;
+    margin-bottom: 1rem;
+    text-align: center;
+    flex: 1;
+    color: #FFF;
+    cursor: pointer;
+    width: 10rem;
+  }

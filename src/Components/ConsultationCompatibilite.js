@@ -11,7 +11,7 @@ function ConsultationCompatibilite(props) {
                         <table className="table table-bordered" id="dataTable" width="100%" cellSpacing="0">
                             <thead>
                                 <tr>
-                                    <th>Objet</th>
+                                    <th>champ</th>
                                     <th></th>
                                 </tr>
                             </thead>

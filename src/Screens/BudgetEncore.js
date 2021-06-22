@@ -38,6 +38,9 @@ function BudgetEncore() {
             if (user.user.service != 'budget' && user.user.service != 'ordonnateur')  {
                 history.push('/')
             }
+            if (!user.user.compte.includes('miseAjour' && user.user.service != 'ordonnateur')) {
+                history.push('/')
+            }
         }
     },[user])
 

@@ -8,6 +8,7 @@ import '../Bootstrab/login/sb-admin-2.css';
 
 const RegistreScreen = () => {
 
+    const user = useSelector(state => state.user);
     const history = useHistory();
     const [message, setmessage] = useState("");
     const [etaMessage, setetaMessage] = useState('')
@@ -71,7 +72,6 @@ const RegistreScreen = () => {
             
         } )
     }
-    const user = useSelector(state => state.user);
 
     useEffect(()=> {
         if (user.existe) {

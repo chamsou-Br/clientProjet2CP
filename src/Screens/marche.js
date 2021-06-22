@@ -28,7 +28,6 @@ const Marche = (props) => {
     // check if user EXiste
     if (!user.existe) {
       axios.get("http://localhost:4000/checkUser",{withCredentials : true}).then(res => {
-          console.log(res.data,'server');
       if (res.data.existe) {
           dispatch(AddUser(res.data.user));
       }else {
@@ -38,9 +37,13 @@ const Marche = (props) => {
   }
   useEffect(()=> {
     if (user.existe) {
-        if (user.user.service != 'marche' && user.user.service != 'ordonnateur')  {
+        if (user.user.service != 'marche' && user.user.service != 'ordonnateur' )  {
             history.push('/')
         }
+        if (!user.user.compte.includes('miseAjour') && user.user.service != 'ordonnateur') {
+            history.push('/')
+        }
+        
     }
 },[user])
         

@@ -17,7 +17,7 @@ async function axiosTest() {
 const initState = {
     dossiers : {
         existe : JSON.parse(localStorage.getItem('dossiers_projet_2cp')) ? true : false ,
-        Dossiers : JSON.parse(localStorage.getItem('dossiers_projet_2cp'))  ? JSON.parse(localStorage.getItem('dossiers'))  : []
+        Dossiers : JSON.parse(localStorage.getItem('dossiers_projet_2cp'))  ? JSON.parse(localStorage.getItem('dossiers_projet_2cp'))  : []
     } ,
     user : {
         existe :   false ,

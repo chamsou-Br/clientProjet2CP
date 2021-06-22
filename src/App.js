@@ -17,6 +17,10 @@ import CompatableEncore from "./Screens/CompatableEncore";
 import ConsultationDossier from "./Screens/ConsultationDossier";
 import Loading from "./Screens/Loading";
 import Notification from "./Screens/Notification";
+import Profile from "./Screens/Profile";
+import Users from "./Screens/users";
+import ForgetPassword from "./Screens/ForgetPassword";
+import PDFConsultationDossier from "./Screens/PDFConsultation";
 
 function App() {
  
@@ -38,6 +42,9 @@ function App() {
             <Route component={CompatableEncore} exact path='/compatable/edit' />
             <Route component={ConsultationDossier} exact path='/consultation/:id' />
             <Route component={Notification} path='/notification' />
+            <Route component={Profile} path='/profile' />
+            <Route component={Users} path='/users' />
+            <Route component={ForgetPassword} path='/forgetPassword' />
           </BrowserRouter>
         
       </div>

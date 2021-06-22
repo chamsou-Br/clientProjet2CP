@@ -19,6 +19,7 @@ export default function Acceil() {
 
     // redux 
     const Dossiers = useSelector(state => state.dossiers.Dossiers)
+    const existDossier = useSelector(state => state.dossiers.existe)
     const user =  useSelector(state => state.user);
     const history = useHistory();
     const dispatch = useDispatch();
@@ -91,7 +92,7 @@ export default function Acceil() {
                                         <tr>
                                             <th>N° de dossier</th>
                                             <th>Type de marché</th>
-                                            <th>Office</th>
+                                            <th>Fournisseur</th>
                                             <th>Etat d'avancement</th>
                                             <th>date de debut</th>
                                             <th></th>
@@ -99,7 +100,7 @@ export default function Acceil() {
                                     </tfoot>
                                     
                                     <tbody>
-                                    {Dossiers.length > 0 && Dossiers.map(doc => {
+                                    {existDossier ? Dossiers.length > 0 && Dossiers.map(doc => {
                                         return(
                                         <tr key={doc._id}>
                                             <td>{doc.num_dossier}</td>
@@ -109,14 +110,16 @@ export default function Acceil() {
                                             <td>{doc.marche.date_lancement}</td>
                                             {user.existe ? user.user.compte.includes('miseAjour') ? (
                                                 <td>
+                                                    <div style={{display : 'flex'}}>
                                                     <Link className="consulter" to={`/consultation/${doc._id}`} >consulter</Link>
+                                                    
+                                                    </div>
                                                 </td>
                                             ) : null : null }
    
                                         </tr>
                                         )
-                                    })}
-                                       
+                                    }) : null }
                                     </tbody>
                                 </table>
                                 </div>
