@@ -29,7 +29,7 @@ function CompatableEncore() {
     })
     }
    const Dossiers = Docs.filter(doc => { 
-       if (!doc.finish && !doc.block && doc.compatble.encore && !doc.compatble.finish) return doc   
+       if (!doc.finish && !doc.block && doc.comptable.encore && !doc.comptable.finish) return doc   
    });
 
    useEffect(()=> {

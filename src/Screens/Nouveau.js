@@ -30,14 +30,19 @@ export default function Nouveau(props) {
         }
     })
     }
+    
 
-    const [num_dossier, setnum_dossier] = useState('');
+        //redux 
+        const Dossiers = useSelector(state => state.dossiers.Dossiers);
+        const year = new Date().getFullYear().toString()
+        const num = Dossiers.length > 0 ? parseInt(Dossiers[Dossiers.length - 1].num_dossier.split('/')[1]) + 1 : 1 ;
+
+    const [num_dossier, setnum_dossier] = useState(`${year}/${num}`);
     const [type_prestation, settype_prestation] = useState('Marchés');
     const [fournisseur, setfournisseur] = useState("")
 
 
-    //redux 
-    const Dossiers = useSelector(state => state.dossiers.Dossiers);
+
 
     const handlerClick = (e) => {
         e.preventDefault();
@@ -79,7 +84,7 @@ export default function Nouveau(props) {
                      <div className='div'>
                      <div><label htmlFor="numdoss">N° de dossier</label></div>
                      <div><input type="text" id="numdoss" name="numdoss"  required
-                                    value={num_dossier} onChange={(e) => setnum_dossier(e.target.value)}
+                                  disabled  value={num_dossier} onChange={(e) => setnum_dossier(e.target.value)}
                      /></div>
                       </div>
                      <div className='div'>

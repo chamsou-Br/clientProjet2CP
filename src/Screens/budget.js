@@ -9,6 +9,9 @@ import Sidebar from '../Components/Sidebar'
 import { useDispatch, useSelector } from 'react-redux'
 import { ModifyDossier } from '../Redux/FunctionRedux/Dossies'
 import { AddUser } from '../Redux/FunctionRedux/User'
+import ScrollTopButton from '../Components/ScollTopButton'
+
+const dateCourant = new Date().getDate().toString() + '/' +   ( new Date().getMonth() + 1).toString() + '/' + new Date().getFullYear().toString();
 
 export default function Budget(props) {
 
@@ -66,7 +69,7 @@ export default function Budget(props) {
                 motifs_rejet,
                 date_visa_rejet,
                 date_mandatement,
-                date_transm,
+                date_transm : type === 1 ? dateCourant : '',
                 type ,
                 id : user.user._id,
                 idDossier : id
@@ -75,11 +78,12 @@ export default function Budget(props) {
         }
 
         useEffect(()=> {
+            console.log(user.user.service , "qdfsghnj,");
             if (user.existe) {
                 if (user.user.service != 'budget' && user.user.service != 'ordonnateur')  {
                     history.push('/')
                 }
-                if (!user.user.compte.includes('miseAjour' && user.user.service != 'ordonnateur')) {
+                if ((!user.user.compte.includes('miseAjour') && user.user.service != 'ordonnateur')) {
                     history.push('/')
                 }
             }
@@ -89,9 +93,11 @@ export default function Budget(props) {
         <div className='budget'>
 
         <div id="wrapper">
+        <ScrollTopButton />
         <Sidebar />
         <div id="content-wrapper" className="d-flex flex-column">
             <div id="content">
+            
                 <Navbar />
                         <div class="container-fluid" style={{textAlign : 'center'}}>
                         <h3 style={{margin : '1rem'}}>
@@ -105,8 +111,8 @@ export default function Budget(props) {
                             </div>
                             <div class='div'>
                                 <div><label for="daterec">date de réception</label></div> 
-                                <div><input type="date" id="daterec" name="daterec" 
-                                            value={date_reception} onChange={(e) => setdate_reception(e.target.value)}
+                                <div><input type="text" id="daterec" name="daterec" 
+                                            disabled value={date_reception} onChange={(e) => setdate_reception(e.target.value)}
                                 />
                                 </div></div>
                             <div class='div'>
@@ -128,11 +134,7 @@ export default function Budget(props) {
                                             value={date_mandatement} onChange={(e) => setdate_mandatement(e.target.value)}
                                 /></div></div>
                                 
-                                <div class='div'>
-                                <div><label for="datetrans">date de Transmission à l'agence Comptable</label></div> 
-                                <div><input type="date" id="datetrans" name="datetrans" 
-                                            value={date_transm} onChange={e => setdate_transm(e.target.value)}
-                                /></div></div>
+
                             <div class='div'>
                             <div> <label for="respodos">responsable du dossier</label></div>
                             <div>  <input type="text" id="respodos" name="respodos" 

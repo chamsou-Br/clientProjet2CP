@@ -6,11 +6,11 @@ import '../Bootstrab/Acceil/sb-admin-2.css'
 import Navbar from '../Components/Navbar'
 import ScrollTopButton from '../Components/ScollTopButton'
 import Sidebar from '../Components/Sidebar'
-import esiImage from '../images/esi_white.png'
-import profileImage  from '../images/undraw_profile.svg'
+
 import { ModifyDossier } from '../Redux/FunctionRedux/Dossies'
 import { AddUser } from '../Redux/FunctionRedux/User'
 
+const dateCourant = new Date().getDate().toString() + '/' +   ( new Date().getMonth() + 1).toString() + '/' + new Date().getFullYear().toString();
 //const id = "609a3694bcbe4715504c7fb2";
 
 const Marche = (props) => {
@@ -35,15 +35,25 @@ const Marche = (props) => {
       }
   })
   }
+
+  const handlerDateLancement = (type) => {
+    if (!Dossier.marche.data_ouverture ) {
+        axios.post(`http://localhost:4000/dossiers/marche/${id}`,{
+            data_ouverture : dateCourant,
+            type,
+        }).then(res => {dispatch(ModifyDossier(res.data))});
+    }
+}
+
   useEffect(()=> {
     if (user.existe) {
+        handlerDateLancement(0);
         if (user.user.service != 'marche' && user.user.service != 'ordonnateur' )  {
             history.push('/')
         }
         if (!user.user.compte.includes('miseAjour') && user.user.service != 'ordonnateur') {
             history.push('/')
-        }
-        
+        }   
     }
 },[user])
         
@@ -51,7 +61,7 @@ const Marche = (props) => {
     const [type_prestation, settype_prestation] = useState(Dossier.marche.type_prestation ? Dossier.marche.type_prestation : 'Marchés');
     const [objet, setobjet] = useState(Dossier.marche.objet ? Dossier.marche.objet : '');
     const [date_lancement, setdate_lancement] = useState(Dossier.marche.date_lancement ? Dossier.marche.date_lancement : '');
-    const [data_ouverture, setdata_ouverture] = useState(Dossier.marche.data_ouverture ? Dossier.marche.data_ouverture : '');
+    const [data_ouverture, setdata_ouverture] = useState(Dossier.marche.data_ouverture ? Dossier.marche.data_ouverture : dateCourant);
     const [observation, setobservation] = useState(Dossier.marche.observation ? Dossier.marche.observation : '');
     const [fournisseur, setfournisseur] = useState(Dossier.marche.fournisseur ? Dossier.marche.fournisseur : '');
     const [data_transm, setdata_transm] = useState(Dossier.marche.data_transm ? Dossier.marche.data_transm : '');
@@ -61,32 +71,16 @@ const Marche = (props) => {
     const [duree_trait, setduree_trait] = useState(Dossier.marche.duree_trait ? Dossier.marche.duree_trait : '');
     const [num_dossier , setnum_dossier] = useState(Dossier.num_dossier)
 
-
-
-  console.log(Dossier , Dossier.marche.decision)
     const handlerClick = (e,type) => {
         e.preventDefault();
-        console.log({
-            type_prestation ,
-            objet,
-            date_lancement,
-            data_ouverture,
-            observation,
-            fournisseur,
-            data_transm,
-            decision,
-            num_convention,
-            respo_dossier,
-            type
-        })
         axios.post(`http://localhost:4000/dossiers/marche/${id}`,{
             type_prestation ,
             objet,
             date_lancement,
-            data_ouverture,
+            data_ouverture ,
             observation,
             fournisseur,
-            data_transm,
+            data_transm : type === 1 ? dateCourant : 'pas de transmaton Encore',
             decision,
             num_convention,
             respo_dossier,
@@ -96,6 +90,7 @@ const Marche = (props) => {
         }).then(res => {dispatch(ModifyDossier(res.data))});
         history.push('/');
     }
+
 
     return(
         <div className='marche'>
@@ -134,13 +129,14 @@ const Marche = (props) => {
                       </div>
                      <div className='div'>
                         <div><label htmlFor="datelanc">date de Lancement</label></div> 
-                        <div><input type="date" id="datelanc" name="datelanc" 
-                                    value={date_lancement} onChange={(e) => setdate_lancement(e.target.value)}
+                        <div><input type="text" id="datelanc" name="datelanc" 
+                                  disabled  value={date_lancement} onChange={(e) => setdate_lancement(e.target.value)}
                         /></div></div>
                      <div className='div'>
                         <div><label htmlFor="dateover">date de D'ouverture</label></div> 
-                        <div><input type="date" id="dateover" name="dateover" 
+                        <div><input  type="text" id="dateover" name="dateover" 
                                     value={data_ouverture} onChange={(e) => setdata_ouverture(e.target.value)}
+                                    disabled={true}
                         /></div></div>
                       <div className='div'>
                        <div> <label htmlFor="fourn">Fournisseur</label></div>
@@ -153,12 +149,7 @@ const Marche = (props) => {
                        <div> <input type="text" id="dec" name="dec"
                                     value={decision} onChange={(e) => setdecision(e.target.value)}
                        /></div></div>
-                     <div className='div'>
-                        
-                        <div><label htmlFor="datetrans">date de Transmission au service commande</label></div> 
-                        <div><input type="date" id="datetrans" name="datetrans"
-                                    value={data_transm} onChange={e => setdata_transm(e.target.value)}
-                        /></div></div>
+                 
                      <div className='div'>
                        <div> <label htmlFor="numcon">N° Convention</label></div>
                         <div> <input type="text" id="numcon" name="numcon"  
@@ -179,7 +170,7 @@ const Marche = (props) => {
                     </div>  
                     <div id='bottuns'>
                  <input onClick={(e) => {handlerClick(e,0)}} type="submit" value="Enregistrer" style={{backgroundColor : 'green'}}/>
-                  <input type="submit" onClick={(e) => {handlerClick(e,2)}} value="Clôturer" style={{backgroundColor : 'red'}} />
+                  <input type="submit" onClick={(e) => {handlerClick(e,2)}} value="Annuler" style={{backgroundColor : 'red'}} />
                   <input type="submit" onClick={(e) => {handlerClick(e,1)}} value="Transmettre"/>
                   </div>
                     </form>

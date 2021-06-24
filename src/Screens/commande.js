@@ -11,6 +11,8 @@ import profileImage  from '../images/undraw_profile.svg'
 import { ModifyDossier } from '../Redux/FunctionRedux/Dossies'
 import { AddUser } from '../Redux/FunctionRedux/User'
 
+const dateCourant = new Date().getDate().toString() + '/' +   ( new Date().getMonth() + 1).toString() + '/' + new Date().getFullYear().toString();
+
 export default function Commande(props) {
 
     const id  = props.match.params.id ;
@@ -58,28 +60,12 @@ export default function Commande(props) {
     const [date_reception_prest, setdate_reception_prest] = useState(Dossier.commande.date_reception_prest ? Dossier.commande.date_reception_prest : '');
     const [num_fact_definitive, setnum_fact_definitive] = useState(Dossier.commande.num_fact_definitive ? Dossier.commande.num_fact_definitive : '');
     const [num_bon_reception, setnum_bon_reception] = useState(Dossier.commande.num_bon_reception ? Dossier.commande.num_bon_reception : '');
-    const [date_envoi, setdate_envoi] = useState(Dossier.commande.date_envoi);
-    const [duree_trait, setduree_trait] = useState(Dossier.commande.duree_trait);
     const [num_dossier , setnum_dossier] = useState(Dossier.num_dossier)
 
     //const id = "609a3694bcbe4715504c7fb2"
 
     const handlerClick = (e,type) => {
         e.preventDefault();
-        console.log({
-            date_reception,
-            respo_dossier,
-            decision,
-            observation,
-            num_fact_proforma,
-            date_fact_proforma,
-            montant,
-            num_bon_commande,
-            date_bon_commande,
-            date_reception_prest,
-            num_fact_definitive,
-            num_bon_reception
-        })
         axios.post(`http://localhost:4000/dossiers/commande/${id}`,{
             date_reception,
             respo_dossier,
@@ -93,6 +79,7 @@ export default function Commande(props) {
             date_reception_prest,
             num_fact_definitive,
             num_bon_reception,
+            date_envoi : type === 1 ? dateCourant  : "",
             type,
             id : user.user._id,
             idDossier : id
@@ -125,8 +112,9 @@ export default function Commande(props) {
                      <div className='div'>
                         <div><label htmlFor="daterec">date de réception</label></div> 
                         <div><input
+                            disabled
                              value={date_reception} onChange={(e) => setdate_reception(e.target.value)}
-                             type="date" id="daterec" name="daterec" /></div></div>
+                             type="text" id="daterec" name="daterec" /></div></div>
                      <div className='div'>
                        <div> <label htmlFor="dec">décision</label></div>
                        <div> <input

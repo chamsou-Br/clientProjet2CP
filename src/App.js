@@ -21,6 +21,7 @@ import Profile from "./Screens/Profile";
 import Users from "./Screens/users";
 import ForgetPassword from "./Screens/ForgetPassword";
 import PDFConsultationDossier from "./Screens/PDFConsultation";
+import Static from "./Screens/statistic";
 
 function App() {
  
@@ -45,6 +46,7 @@ function App() {
             <Route component={Profile} path='/profile' />
             <Route component={Users} path='/users' />
             <Route component={ForgetPassword} path='/forgetPassword' />
+            <Route component={Static} path='/static'/>
           </BrowserRouter>
         
       </div>

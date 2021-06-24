@@ -63,6 +63,7 @@ function Profile() {
      })
      const ChangePhoto = async (e) => {
         e.preventDefault();
+        console.log('photo')
         await signIn();
      }
 

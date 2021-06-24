@@ -7,6 +7,7 @@ import Navbar from '../Components/Navbar'
 import Sidebar from '../Components/Sidebar'
 import { ModifyDossier } from '../Redux/FunctionRedux/Dossies'
 import { AddUser } from '../Redux/FunctionRedux/User'
+import ScrollTopButton from '../Components/ScollTopButton'
 // "609a3694bcbe4715504c7fb2"
 export default function Compatable(props) {
 
@@ -15,8 +16,8 @@ export default function Compatable(props) {
        const dispatch = useDispatch();
         // redux
         const Docs = useSelector(state => state.dossiers.Dossiers)
-        const Dossier = Docs.filter(doc =>{ return doc._id === id}).length > 0 ? Dossier = Docs.filter(doc =>{ return doc._id === id})[0] : {comptable : {}};
-        if (Dossier = Docs.filter(doc =>{ return doc._id === id}).length === 0) history.push('/')
+        const Dossier = Docs.filter(doc =>{ return doc._id === id}).length > 0 ?  Docs.filter(doc =>{ return doc._id === id})[0] : {comptable : {}};
+        if ( Docs.filter(doc =>{ return doc._id === id}).length === 0) history.push('/')
         const user = useSelector(state => state.user)
         
     // check if user EXiste
@@ -55,17 +56,6 @@ export default function Compatable(props) {
 
             const hanlerClick = (e,type) => {
                 e.preventDefault();
-                console.log(
-                    date_reception,
-                    respo_dossier,
-                    observations,
-                    decision ,
-                    piece_cmpleter,
-                    date_cmplement,
-                    date_paiement,
-                    
-                    
-                )
                 axios.post(`http://localhost:4000/dossiers/comptable/${id}`,{
                     date_reception,
                     respo_dossier,
@@ -84,6 +74,7 @@ export default function Compatable(props) {
     return (
         <div className='compatable'>
         <div id="wrapper">
+        <ScrollTopButton />
         <Sidebar />
         <div id="content-wrapper" className="d-flex flex-column">
             <div id="content">
@@ -100,20 +91,14 @@ export default function Compatable(props) {
                     </div>
                     <div className='div'>
                         <div><label htmlFor="daterec">date de réception</label></div> 
-                        <div><input type="date" id="daterec" name="daterec" 
-                                    value={date_reception} onChange={(e) => setdate_reception(e.target.value)}
+                        <div><input type="text" id="daterec" name="daterec" 
+                                   disabled value={date_reception} onChange={(e) => setdate_reception(e.target.value)}
                          /></div></div>
                     <div className='div'>
                     <div> <label htmlFor="dec">décision</label></div>
                     <div> <input type="text" id="dec" name="dec" 
                                  value={decision} onChange={(e) => setdecision(e.target.value)}
                     /></div></div>
-                    <div className='div'>
-                        
-                        <div><label htmlFor="datecomp">date de complément du dossier</label></div> 
-                        <div><input type="date" id="datecomp" name="datecomp" 
-                                    value={date_cmplement} onChange={(e) => setdate_cmplement(e.target.value)}
-                        /></div></div>
                         
                         <div className='div'>
                         <div><label htmlFor="datepai">date de Paiement</label></div> 
@@ -128,7 +113,7 @@ export default function Compatable(props) {
                     <div>  <input type="text" id="respodos" name="respodos" 
                                   value={respo_dossier} onChange={(e)=> setrespo_dossier(e.target.value)}
                     /></div></div>
-                    <div id='motifs' >
+                    <div className='div' >
                         <div> <label htmlFor="pieces">Pieces à Completer</label></div>
                     <div> <input type="text" id="pieces" name="pieces" 
                                  value={piece_cmpleter} onChange={(e) => setpiece_cmpleter(e.target.value)}
