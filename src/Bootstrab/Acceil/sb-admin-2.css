@@ -10,6 +10,7 @@
  * Copyright 2011-2020 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  */
+ 
 :root {
   --blue: #4e73df;
   --indigo: #6610f2;
@@ -3183,7 +3184,7 @@ input[type="button"].btn-block {
   padding: 0.25rem 1.5rem;
   clear: both;
   font-weight: 400;
-  color: #3a3b45;
+  color: #1a1a2e;
   text-align: inherit;
   white-space: nowrap;
   background-color: transparent;
@@ -6467,7 +6468,7 @@ button.bg-dark:focus {
 }
 
 .bg-white {
-  background-color: #fff !important;
+  background-color: #FFF !important;
 }
 
 .bg-transparent {
@@ -9568,11 +9569,11 @@ button.bg-dark:focus {
 }
 
 .text-primary {
-  color: #4e73df !important;
+  color: #0F3460 !important;
 }
 
 a.text-primary:hover, a.text-primary:focus {
-  color: #224abe !important;
+  color: #787a80 !important;
 }
 
 .text-secondary {
@@ -9876,8 +9877,7 @@ a:focus {
 }
 
 .bg-gradient-primary {
-  background-color: #4e73df;
-  background-image: linear-gradient(180deg, #4e73df 10%, #224abe 100%);
+  background-color: #0f3460;
   background-size: cover;
 }
 
@@ -9919,7 +9919,7 @@ a:focus {
 
 .bg-gradient {
   background-color: #427992;
-  background-image: linear-gradient(180deg, #5a5c69 10%, #373840 100%);
+  background-image: linear-gradient(180deg, #1a1a2e 40%, rgb(18, 18, 29) 90%);
   background-size: cover;
 }
 
@@ -10207,7 +10207,7 @@ a:focus {
 }
 
 .topbar .dropdown-list .dropdown-header {
-  background-color: #4e73df;
+  background-color: #1a1a2e;
   border: 1px solid #4e73df;
   padding-top: 0.75rem;
   padding-bottom: 0.75rem;

@@ -22,6 +22,7 @@ import Users from "./Screens/users";
 import ForgetPassword from "./Screens/ForgetPassword";
 import PDFConsultationDossier from "./Screens/PDFConsultation";
 import Static from "./Screens/statistic";
+import AideEnLign from "./Screens/AideEnLign";
 
 function App() {
  
@@ -47,6 +48,7 @@ function App() {
             <Route component={Users} path='/users' />
             <Route component={ForgetPassword} path='/forgetPassword' />
             <Route component={Static} path='/static'/>
+            <Route component={AideEnLign} path='/aide' />
           </BrowserRouter>
         
       </div>

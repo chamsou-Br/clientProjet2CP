@@ -1,4 +1,4 @@
-import { LOG_IN, LOG_OUT } from "../ActionsName/User"
+import { LOG_IN, LOG_OUT, Notif } from "../ActionsName/User"
 
 export const AddUser = (user) => (dispatch , getState) => {
     dispatch({
@@ -13,4 +13,10 @@ export const RemoveUser = () => (dispatch , getState ) => {
     })
     localStorage.removeItem('user_projet_2cp');
     localStorage.removeItem('dossiers_projet_2cp');
+}
+export const NotifFunc = (user) => (dispatch) => {
+    dispatch({
+        type : Notif,
+        payload : user
+    })
 }

@@ -58,7 +58,7 @@ export default function Nouveau(props) {
 
     useEffect(()=> {
         if (user.existe) {
-            if (user.user.service != 'marche' && user.user.service != 'ordonnateur')  {
+            if (user.user.service != 'marche' && user.user.service != 'ordonnateur' && user.user.service != 'commande')  {
                 history.push('/')
             }
         }
@@ -105,7 +105,7 @@ export default function Nouveau(props) {
                        /></div></div>  
                     </div> 
                        <div id='bottuns'>
-                           <input  type="submit" value="Créer" style={{backgroundColor : 'bleu'}}/>
+                           <input  type="submit" value="Créer" style={{backgroundColor : '#1a1a2e'}}/>
                         </div>    
 
                     </form>

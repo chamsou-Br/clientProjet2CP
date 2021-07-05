@@ -5,21 +5,20 @@ function ConsultationMarche(props) {
     const Dossier = props.Dossier;
 
     return (
-        <>
-            <h1 className='titleTable'>Service Marche</h1>   
+        <> 
                   <div className="table-responsive service">
                      
                         <table className="table table-bordered" id="dataTable" width="100%" cellSpacing="0">
                        
                             <thead>
-                                <tr>
-                                    <th>champ</th>
+                                <tr style={{color : '#1a1a2e'}}>
+                                    <th>Service Marche</th>
                                     <th></th>
                                 </tr>
                             </thead>
 
-                            <tbody>
-                                <tr>
+                            <tbody  style={{color : '#1a1a2e' , fontWeight : '600'}}>
+                                <tr  >
                                     <td>objet</td>
                                     <td>{Dossier.marche.objet ? (<span>{Dossier.marche.objet}</span>) : (<span>Pas Encore</span>) }</td>
                                 </tr>

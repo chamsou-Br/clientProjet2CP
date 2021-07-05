@@ -35,9 +35,11 @@ export default function Compatable(props) {
         if (user.existe) {
             if (user.user.service != 'compatable' && user.user.service != 'ordonnateur')  {
                 history.push('/')
+                console.log('000')
             }
             if (!user.user.compte.includes('miseAjour')&& user.user.service != 'ordonnateur') {
                 history.push('/')
+                console.log('00')
             }
         }
     },[user])
@@ -70,6 +72,10 @@ export default function Compatable(props) {
                 }).then(res => dispatch(ModifyDossier(res.data)));
                 history.push('/');
             }
+
+            const [color , setcolor ] = useState('#1a1a2e');
+            const [color1 , setcolor1 ] = useState('#1a1a2e');
+            const [color2 , setcolor2 ] = useState('#1a1a2e');
 
     return (
         <div className='compatable'>
@@ -129,9 +135,9 @@ export default function Compatable(props) {
                     
                 </div>
                 <div id='bottuns'>
-                            <input onClick={(e)=> {hanlerClick(e,0)}} type="submit" value="Enregistrer" style={{backgroundColor : 'green'}}/>
-                            <input type="submit" onClick={(e)=> {hanlerClick(e,2)}} value="Clôturer" style={{backgroundColor : 'red'}} />
-                            <input type="submit" onClick={(e)=> {hanlerClick(e,1)}} value="Transmettre"/>
+                            <input onClick={(e)=> {hanlerClick(e,0)}} type="submit" value="Enregistrer" onMouseEnter={()=>setcolor('#16213e')} onMouseLeave={()=>setcolor("#1a1a2e")}  style={{backgroundColor : `${color}` }}/>
+                            <input type="submit" onClick={(e)=> {hanlerClick(e,2)}} value="Annuler Le Dossier" onMouseEnter={()=>setcolor1('#16213e')} onMouseLeave={()=>setcolor1("#1a1a2e")}  style={{backgroundColor : `${color1}` }} />
+                            <input type="submit" onClick={(e)=> {hanlerClick(e,1)}} value="Terminer" onMouseEnter={()=>setcolor2('#16213e')} onMouseLeave={()=>setcolor2("#1a1a2e")}  style={{backgroundColor : `${color2}` }}/>
                 </div>
                 </div>
         </div>      

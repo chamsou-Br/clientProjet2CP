@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import Navbar from '../Components/Navbar'
 import ScrollTopButton from '../Components/ScollTopButton'
 import Sidebar from '../Components/Sidebar'
-import { AddUser } from '../Redux/FunctionRedux/User';
+import { AddUser, NotifFunc } from '../Redux/FunctionRedux/User';
 
 
 function Notification() {
@@ -30,6 +30,19 @@ function Notification() {
 
         // state notiication
         const [notification, setnotification] = useState([]);
+
+        const removeNotif = async (id) => {
+            let nots = notification
+            await nots.splice(id , 1)
+                setnotification(notification => notification.filter(item => item != id))    
+            dispatch(NotifFunc({...user.user , notification}))
+            axios.post("http://localhost:4000/notif",{
+                _id : user.user._id,
+                notification
+            })
+                  
+        }
+
         useEffect(()=> {
             if (user.existe) {
                 if (user.user.notification) {
@@ -54,28 +67,32 @@ function Notification() {
                             {notification.length > 0 && notification.map((notif,ind) => {
                                 if (notif.typeof === 'cancel') {
                                     return (
-                                    <Link to={`/consultation/${notif.idDossier}`}>
-                                    <div  className='notif' key={ind}>
-                                        <div className='circle icon-circle bg-danger'>
-                                           <i style={{fontSize : '1.4rem'}} className="fas fa-file-alt text-white"></i>
-                                        </div>
-                                        <div className='text'>
-                                            <p className='date'>{notif.date}</p><br/>
-                                            <p className='remarque'>{notif.notif}</p>
-                                        </div>
+                                    <div key={ind}>    
+                                      <div  className='notif' key={ind}>
+                                            <div style={{cursor : 'pointer'}}  onClick={()=> history.push(`/consultation/${notif.idDossier}`)}  >
+                                                <div className='circle icon-circle bg-danger'>
+                                                <i style={{fontSize : '1.4rem'}} className="fas fa-file-alt text-white"></i>
+                                                </div>
+                                                <div className='text'>
+                                                    <p className='date'>{notif.date}</p><br/>
+                                                    <p className='remarque'>{notif.notif}</p>
+                                                </div>
+                                            </div>
                                         <div className='cancel'>
-                                            <button type="button" className='delete'>
+                                            <button type="button" className='delete' onClick={()=>removeNotif(ind)}>
                                                 <img src="images\cancel.svg" alt="cancel" />
                                             </button>
                                         </div>
                                     </div>
-                                    </Link>
+                                    </div>
                                 )
                                 }else {
                                     if (notif.typeof === 'complete') {
                                         return(
-                                            <Link to={`/consultation/${notif.idDossier}`}>
+                                            <div >
+
                                             <div className='notif' key={ind}>
+                                                <div style={{cursor : 'pointer'}} onClick={()=> history.push(`/consultation/${notif.idDossier}`)}>
                                                 <div className='circle icon-circle bg-success'  >
                                                      <i  style={{fontSize : '1.4rem'}} className="fas fa-file-alt text-white"></i>
                                                 </div>
@@ -83,13 +100,14 @@ function Notification() {
                                                     <p className='date'>{notif.date}</p><br/>
                                                     <p className='remarque'>{notif.notif} </p>
                                                 </div>
+                                                </div>
                                                 <div className='cancel'>
-                                                    <button type="button" className='delete'>
+                                                    <button type="button" className='delete' onClick={()=>removeNotif(ind)} >
                                                         <img src="images\cancel.svg" alt="cancel" />
                                                     </button>
                                                 </div>
                                             </div>
-                                            </Link>
+                                            </div>
 
                                         )
                                     }

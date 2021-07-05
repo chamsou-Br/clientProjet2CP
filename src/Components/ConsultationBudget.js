@@ -7,16 +7,16 @@ function ConsultationBudget(props) {
     return (
         <>
         <div >
-            <h1 className='titleTable'>Service Budget</h1>   
+        
             <div className="table-responsive service">
                         <table className="table table-bordered" id="dataTable" width="100%" cellSpacing="0">
                             <thead>
-                                <tr>
-                                    <th>champ</th>
+                                <tr style={{color : '#1a1a2e' , fontWeight : '600'}}>
+                                    <th>Service Budget</th>
                                     <th></th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody style={{color : '#1a1a2e' , fontWeight : '600'}}>
                                 <tr>
                                     <td>Date de réception</td>
                                     <td>{Dossier.budget.date_reception ? (<span>{Dossier.budget.date_reception}</span>) : (<span>Pas Encore</span>) }</td>
@@ -47,7 +47,7 @@ function ConsultationBudget(props) {
                                 </tr>
                                 <tr>
                                     <td>Observation</td>
-                                    <td>{Dossier.budget.observation ? (<span>{Dossier.budget.observation}</span>) : (<span>Pas Encore</span>) }</td>
+                                    <td>{Dossier.budget.observations ? (<span>{Dossier.budget.observations}</span>) : (<span>Pas Encore</span>) }</td>
                                 </tr>
                             </tbody>
                     </table>

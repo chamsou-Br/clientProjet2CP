@@ -61,12 +61,9 @@ function MarcheEncore() {
                           <div className="meta">
                           <div className="photo"  ></div>        
                           </div>
-                          <div className="description">
+                          <div style={{color : '#1a1a2e'}} className="description">
                           <h1>Service marche</h1>
                           <p>Vous trouvez ici tous les Dossiers Encore modifié dans ce Service</p>
-                          <p className="read-more">
-                              <a href="#">plus d'info</a>
-                          </p>
                           </div>
                       </div>
                       
@@ -78,7 +75,7 @@ function MarcheEncore() {
                               <div className="table-responsive">
                               <table className="table table-bordered" id="dataTable" width="100%" cellSpacing="0">
                                   <thead>
-                                      <tr>
+                                      <tr style={{color : '#0f3460'}}>
                                           <th>N° de dossier</th>
                                           <th>Type de marché</th>
                                           <th>Fournisseur</th>
@@ -88,7 +85,7 @@ function MarcheEncore() {
                                       </tr>
                                   </thead>
                                   <tfoot>
-                                      <tr>
+                                      <tr style={{color : '#0f3460'}} >
                                           <th>N° de dossier</th>
                                           <th>Type de marché</th>
                                           <th>Office</th>
@@ -101,14 +98,14 @@ function MarcheEncore() {
                                   <tbody>
                                   {Dossiers.length > 0 && Dossiers.map(doc => {
                                       return(
-                                      <tr key={doc._id}>
+                                      <tr style={{fontSize : "0.8rem",color : "#0f3460"}} key={doc._id}>
                                           <td>{doc.num_dossier}</td>
                                           <td>{doc.marche.type_prestation}</td>
                                           <td>{doc.marche.fournisseur}</td>
                                           <td>Pas Encore</td>
                                           <td>{doc.marche.date_lancement}</td>
-                                          <td>
-                                                  <Link className="consulter" to={`/marche/edit/${doc._id}`} >Editer</Link>
+                                          <td style={{background : '#16213e',textAlign : 'center',borderRadius : '0.6rem'}} >
+                                                  <Link className="consulter" style={{color : '#FFF'}} to={`/marche/edit/${doc._id}`} >Editer</Link>
                                           </td>
                                       </tr>
                                       )

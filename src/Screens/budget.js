@@ -35,6 +35,7 @@ export default function Budget(props) {
             history.push('/login');
         }
     })
+    
     }
 
         const [date_reception, setdate_reception] = useState(Dossier.budget.date_reception ? Dossier.budget.date_reception : '');
@@ -88,6 +89,10 @@ export default function Budget(props) {
                 }
             }
         },[user])
+
+        const [color , setcolor ] = useState('#1a1a2e');
+        const [color1 , setcolor1 ] = useState('#1a1a2e');
+        const [color2 , setcolor2 ] = useState('#1a1a2e');
 
     return (
         <div className='budget'>
@@ -156,9 +161,9 @@ export default function Budget(props) {
                             
                         </div>
                         <div id='bottuns'>
-                            <input onClick={(e)=> {hanlerClick(e,0)}} type="submit"  value="Enregistrer" style={{backgroundColor : 'green'}}/>
-                            <input type="submit" onClick={(e) => hanlerClick(e,2)}  value="Clôturer" style={{backgroundColor : 'red'}} />
-                            <input type="submit" onClick={e => hanlerClick(e,1)} value="Transmettre"/>
+                            <input onClick={(e)=> {hanlerClick(e,0)}} type="submit"  value="Enregistrer" onMouseEnter={()=>setcolor('#16213e')} onMouseLeave={()=>setcolor("#1a1a2e")}  style={{backgroundColor : `${color}` }}/>
+                            <input type="submit" onClick={(e) => hanlerClick(e,2)}  value="Annuler Le Dossier" onMouseEnter={()=>setcolor1('#16213e')} onMouseLeave={()=>setcolor1("#1a1a2e")}  style={{backgroundColor : `${color1}` }}  />
+                            <input type="submit" onClick={e => hanlerClick(e,1)} value="Transmettre" onMouseEnter={()=>setcolor2('#16213e')} onMouseLeave={()=>setcolor2("#1a1a2e")}  style={{backgroundColor : `${color2}` }} />
                         </div>
                         </div>
                 </div>

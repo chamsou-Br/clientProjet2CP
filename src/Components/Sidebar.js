@@ -37,7 +37,7 @@ export default function Sidebar(props) {
                     <Link className="nav-link collapsed" to="#" data-toggle="collapse" data-target="#collapseTwo"
                         aria-expanded="true" aria-controls="collapseTwo">
                         <i className="fas fa-fw fa-building"></i>
-                        <span>Structure</span>
+                        <span>Profile</span>
                         
                     </Link>
                     <div id="collapseTwo" className="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
@@ -86,8 +86,8 @@ export default function Sidebar(props) {
                 </li>
 
                 <li className="nav-item">
-                    <Link className="nav-link" to="charts.html">
-                        <i className="fas fa-fw fa-clipboard"></i>
+                    <Link className="nav-link" to="/static">
+                        <i className="fas fa-fw fa-search"></i>
                         <span>Statistiques</span></Link>
                 </li>
 
@@ -99,9 +99,14 @@ export default function Sidebar(props) {
                     ) : null : null}
   
                 </li>
+                <li className="nav-item ">
+                    <Link className="nav-link" to="/aide">
+                        <i className="fas fa-fw fa-lightbulb"></i>
+                        <span>Aide en ligne</span></Link>
+                </li>
 
                 <li className="nav-item">
-                    {userstate.existe ? user.service === 'marche' || user.service === 'ordonnateur'  ? (
+                    {userstate.existe ? user.service === 'marche' || user.service === 'ordonnateur' || user.service === 'commande' ? (
                         <Link className="nav-link" to="/nouveauDossier">
                         <i className="fas fa-fw fa-plus"></i>
                         <span>Ajouter un Dossier</span></Link>

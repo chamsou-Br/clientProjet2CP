@@ -6,16 +6,15 @@ function ConsultationCompatibilite(props) {
 
     return (
         <>
-                <h1 className='titleTable'>Service Compatibilité</h1>   
                 <div className="table-responsive service">
                         <table className="table table-bordered" id="dataTable" width="100%" cellSpacing="0">
                             <thead>
-                                <tr>
-                                    <th>champ</th>
+                                <tr style={{color : '#1a1a2e' , fontWeight : '600'}}>
+                                    <th>Service Compatibilité</th>
                                     <th></th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody style={{color : '#1a1a2e' , fontWeight : '600'}}>
                                 <tr>
                                     <td>Date de réception</td>
                                     <td>{Dossier.comptable.date_reception ? (<span>{Dossier.comptable.date_reception}</span>) : (<span>Pas Encore</span>) }</td>
@@ -38,7 +37,7 @@ function ConsultationCompatibilite(props) {
                                 </tr>
                                 <tr>
                                     <td>Observation</td>
-                                    <td>{Dossier.comptable.observation ? (<span>{Dossier.comptable.observation}</span>) : (<span>Pas Encore</span>) }</td>
+                                    <td>{Dossier.comptable.observations ? (<span>{Dossier.comptable.observations}</span>) : (<span>Pas Encore</span>) }</td>
                                 </tr>
                             </tbody>
                         </table>

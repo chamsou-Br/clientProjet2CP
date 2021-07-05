@@ -79,7 +79,7 @@ export default function Navbar() {
                                                 </div>
                                             </div>
                                             <div>
-                                                <div className="small text-gray-500">{notif.date}</div>
+                                                <div className="small text-gray-900">{notif.date}</div>
                                                 {notif.notif}
                                             </div>
                                         </Link>
@@ -103,7 +103,7 @@ export default function Navbar() {
                                 }) 
                                 }
                                 
-                                <Link className="dropdown-item text-center small text-gray-500" to="/notification">afficher tout les alertes</Link>
+                                <Link  className="dropdown-item text-center small text-gray-500" style={{color : '#1a1a2e'}} to="/notification">afficher tout les alertes</Link>
                             </div>
                             
                             </li>
@@ -124,7 +124,7 @@ export default function Navbar() {
                                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     {
                                         userstate.existe && (
-                                            <span className="mr-2 d-none d-lg-inline text-gray-600 small">{user.username}</span>
+                                            <span className="mr-2 d-none d-lg-inline text-gray-600 small" style={{color : '#1a1a2e',fontWeight : 'bold'}}>{user.username}</span>
                                         )
                                     }
                                     {userstate.user.isImageSocial && (

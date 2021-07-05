@@ -89,6 +89,9 @@ export default function Commande(props) {
         });
         history.push('/');
     }
+    const [color , setcolor ] = useState('#1a1a2e');
+    const [color1 , setcolor1 ] = useState('#1a1a2e');
+    const [color2 , setcolor2 ] = useState('#1a1a2e');
 
     return (
         <div className='commande'>
@@ -175,9 +178,9 @@ export default function Commande(props) {
                
                  </div>
                  <div id='bottuns'>
-                 <input onClick={(e) => handlerClick(e ,0)} type="submit" value="Enregistrer" style={{backgroundColor : 'green'}}/>
-                  <input type="submit" onClick={(e) => handlerClick(e ,2)} value="Clôturer" style={{backgroundColor : 'red'}} />
-                  <input type="submit" onClick={(e) => handlerClick(e ,1)} value="Transmettre"/>
+                 <input onClick={(e) => handlerClick(e ,0)} type="submit" value="Enregistrer" onMouseEnter={()=>setcolor('#16213e')} onMouseLeave={()=>setcolor("#1a1a2e")}  style={{backgroundColor : `${color}` }}/>
+                  <input type="submit" onClick={(e) => handlerClick(e ,2)} value="Annuler Le Dossier" onMouseEnter={()=>setcolor1('#16213e')} onMouseLeave={()=>setcolor1("#1a1a2e")}  style={{backgroundColor : `${color1}` }} />
+                  <input type="submit" onClick={(e) => handlerClick(e ,1)} value="Transmettre" onMouseEnter={()=>setcolor2('#16213e')} onMouseLeave={()=>setcolor2("#1a1a2e")}  style={{backgroundColor : `${color2}` }}/>
                   </div>
                 </div>
                     </div>
