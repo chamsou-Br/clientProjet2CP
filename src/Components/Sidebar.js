@@ -14,7 +14,7 @@ export default function Sidebar(props) {
    
     return (
         <ul className="navbar-nav bg-gradient sidebar sidebar-dark accordion" id="accordionSidebar">
-                <a className="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+                <a className="sidebar-brand d-flex align-items-center justify-content-center" href="/">
                     <div className="sidebar-brand-icon ">
                         <img src={esiImage} width="50" height="40" />
                     </div>

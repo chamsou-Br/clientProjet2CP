@@ -602,14 +602,14 @@ resize: none;
   background-color: #191970;
   border: none;
   width: 8.5rem;
+  height: 2.5rem;
   color: white;
   font-weight: 600;
-  letter-spacing: 0.3rem;
   padding: 3% 4%;
   text-decoration: none;
   cursor: pointer;
   margin: 2rem 0 2rem 2rem;
-  border-radius: 20px;
+  border-radius: 1rem;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 .nouveau #bottuns{

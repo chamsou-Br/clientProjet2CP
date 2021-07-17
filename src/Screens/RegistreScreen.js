@@ -3,6 +3,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router';
 import '../Bootstrab/login/sb-admin-2.css';
+import ScrollTopButton from '../Components/ScollTopButton'
 
 
 
@@ -27,6 +28,7 @@ const RegistreScreen = () => {
     const [CompteError , setCompteError] = useState('') 
 
 
+
     const handlerConnection = (e) => {
         e.preventDefault();
         if (service === 'adminstration') setCompte(['consultation'])
@@ -39,7 +41,6 @@ const RegistreScreen = () => {
             withGoogle : false,
             username :(lastname || firstname) ? (lastname + ' ' + firstname) : null 
         }).then(res => {
-            console.log(res.data)
             if (res.data.err) {
                 setetaMessage('registreFalse');
                 setmessage("this compte n'est pas registred");
@@ -53,7 +54,7 @@ const RegistreScreen = () => {
                     setetaMessage('');
                 },4000)
             }else {
-                setCompte('');
+                setCompte([]);
                 setEmail('');
                 setFirstName('');
                 setLastName('');
@@ -65,7 +66,13 @@ const RegistreScreen = () => {
                 setTimeout(()=> {
                     setmessage('');
                     setetaMessage('');
+                    
                 },4000)
+
+                setTimeout(()=> {
+                    history.push('/');
+                    
+                },2000)
                 
             
             }
@@ -85,6 +92,7 @@ const RegistreScreen = () => {
 
     return (
         <div className='registreScreen'>
+            <ScrollTopButton />
           <div className="container">
             <div className="card o-hidden border-0 shadow-lg my-5">
                 <div className="card-body p-0">

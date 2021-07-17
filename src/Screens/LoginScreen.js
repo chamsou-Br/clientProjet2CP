@@ -107,7 +107,7 @@ const clientId = "953077210388-hrrqunh00aerbng60d4firkbdh2954q3.apps.googleuserc
                 <div className="card o-hidden  border-0 shadow-lg my-5">
                     <div className="card-body  p-0">   
                         <div className="row"> 
-                            <div className="col-lg-6 d-none d-lg-block "><img alt='esi' height="100%" src="/images/esi.jpg" width="468"/></div>
+                            <div className="col-lg-6 d-none d-lg-block"><img alt='esi' height="100%" src="/images/esi.jpg" width="468"/></div>
                             <div className="col-lg-6">
                                 <div className="p-5">
                                     <div className="text-center">
