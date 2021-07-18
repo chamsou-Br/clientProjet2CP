@@ -209,36 +209,38 @@ export default function Static() {
                                             <td>{doc.marche.fournisseur}</td>
                                             <td>Pas Encore</td>
                                             <td>{doc.marche.date_lancement}</td>
-                                            
-                                                <td>
-                                               
-                                                    <div style={{display : 'flex'}}>
-
-                                                    {user.existe ? user.user.compte.includes('consultation') ? (
-
-                                                        <Link className="consulter" style={{color  :"#1a1a2e"}} to={`/consultation/${doc._id}`} >consulter</Link>
-
-                                                    ) : null : null }
-
-                                                    <span style={{marginLeft : 2,marginRight : 1}}>/</span>
-
-                                                  
-                                                    {user.existe ? user.user.compte.includes('miseAjour') && user.user.service != 'adminstration' ? 
-                                                
-                                                        user.user.service === 'ordonnateur'  ? (
-                                                            <p  onClick={(e) => {
-                                                                doc.marche.encore && !doc.marche.finish ? history.push(`/marche/edit/${doc._id}`) : 
-                                                                doc.commande.encore && !doc.commande.finish ? history.push(`/commande/edit/${doc._id}`)  :
-                                                                doc.budget.encore && !doc.budget.finish ? history.push(`/budget/edit/${doc._id}`) : 
-                                                                doc.comptable.encore && !doc.comptable.finish ? 
-                                                                history.push(`/compatable/edit/${doc._id}`) : console.log('')
-                                                            }} > 
-                                                            editer</p>): doc[user.user.service].encore && !doc[user.user.service].finish ?
-                                                            (<Link className="consulter" style={{pointer  : "cursor"}} to={`/${user.user.service}/edit/${doc._id}`} >editer</Link>) : null
-                                                        : null : null  }
+                                            {user.existe ? user.user.compte.includes('miseAjour') ? (
+                                            <td style={{background : '#16213e',textAlign : 'center',borderRadius : '0.6rem'}} >
+                                                    <div style={{textAlign : 'center'}}>
+                                                    <Link style={{color : '#FFF' , fontWeight : 'bold' , textAlign : 'center'}} className="consulter" to={`/consultation/${doc._id}`} >consulter</Link>
                                                     
                                                     </div>
-                                                </td>
+                                            </td>
+                                            
+                                            ) : null : null }
+                                            
+                                            
+                                            {user.existe ? user.user.compte.includes('miseAjour') && user.user.service != 'adminstration' ? 
+                                                
+                                                user.user.service === 'ordonnateur'  ? (
+                                                    <td style={{background : '#16213e',textAlign : 'center',borderRadius : '0.6rem'}}>
+                                                    <div style={{color : '#FFF'}}  onClick={(e) => {
+                                                        doc.marche.encore && !doc.marche.finish ? history.push(`/marche/edit/${doc._id}`) : 
+                                                        doc.commande.encore && !doc.commande.finish ? history.push(`/commande/edit/${doc._id}`)  :
+                                                        doc.budget.encore && !doc.budget.finish ? history.push(`/budget/edit/${doc._id}`) : 
+                                                        doc.comptable.encore && !doc.comptable.finish ? 
+                                                        history.push(`/compatable/edit/${doc._id}`) : console.log('')
+                                                    }} > 
+                                                    editer</div>
+                                                    </td>
+                                                    ) : user.user.service != 'compatable' ?
+                                                      doc[user.user.service].encore && !doc[user.user.service].finish ?
+                                                    (  <td style={{background : '#16213e',textAlign : 'center',borderRadius : '0.6rem'}}>
+                                                    <Link className="consulter" style={{pointer  : "cursor",color : '#FFF'}} to={`/${user.user.service}/edit/${doc._id}`} >editer</Link>
+                                                    </td>) : null :  doc.comptable.encore && !doc.comptable.finish ? ((  <td style={{background : '#16213e',textAlign : 'center',borderRadius : '0.6rem'}}>
+                                                    <Link className="consulter" style={{pointer  : "cursor",color : '#FFF'}} to={`/compatable/edit/${doc._id}`} >editer</Link>
+                                                    </td>)) : null 
+                                                : null : null  }
                                         </tr>
                                         )}) : null }
                                     </tbody>

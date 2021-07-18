@@ -88,7 +88,7 @@ export default function Nouveau(props) {
                      /></div>
                       </div>
                      <div className='div'>
-                     <div><label htmlFor="type">Type de presntation</label></div>
+                     <div><label htmlFor="type">Type de prestation</label></div>
                      <div>
                       <select name="type" id="type" required
                               value={type_prestation} onChange={(e) => settype_prestation(e.target.value)} >

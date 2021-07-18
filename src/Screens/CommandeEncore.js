@@ -78,7 +78,7 @@ function CommandeEncore() {
                                            <th>Type de marché</th>
                                            <th>Fournisseur</th>
                                            <th>Etat d'avancement</th>
-                                           <th>date de debut</th>
+                                           <th>date de début</th>
                                            <th></th>
                                        </tr>
                                    </thead>
@@ -88,7 +88,7 @@ function CommandeEncore() {
                                            <th>Type de marché</th>
                                            <th>Office</th>
                                            <th>Etat d'avancement</th>
-                                           <th>date de debut</th>
+                                           <th>date de début</th>
                                            <th></th>
                                        </tr>
                                    </tfoot>

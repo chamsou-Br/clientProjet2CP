@@ -87,7 +87,7 @@ export default function Compatable(props) {
                 <Navbar />
                 <div className="container-fluid" style={{textAlign : 'center'}}>
                 <h3 style={{margin : '1rem'}}>
-                AGENCE COMPTABLE
+                Service COMPTABLE
                 </h3>
                 <div id='main'>
                     <form id='form'>
@@ -137,7 +137,7 @@ export default function Compatable(props) {
                 <div id='bottuns'>
                             <input onClick={(e)=> {hanlerClick(e,0)}} type="submit" value="Enregistrer" onMouseEnter={()=>setcolor('#16213e')} onMouseLeave={()=>setcolor("#1a1a2e")}  style={{backgroundColor : `${color}` }}/>
                             <input type="submit" onClick={(e)=> {hanlerClick(e,2)}} value="Annuler Le Dossier" onMouseEnter={()=>setcolor1('#16213e')} onMouseLeave={()=>setcolor1("#1a1a2e")}  style={{backgroundColor : `${color1}` }} />
-                            <input type="submit" onClick={(e)=> {hanlerClick(e,1)}} value="Terminer" onMouseEnter={()=>setcolor2('#16213e')} onMouseLeave={()=>setcolor2("#1a1a2e")}  style={{backgroundColor : `${color2}` }}/>
+                            <input type="submit" onClick={(e)=> {hanlerClick(e,1)}} value="Clôturer" onMouseEnter={()=>setcolor2('#16213e')} onMouseLeave={()=>setcolor2("#1a1a2e")}  style={{backgroundColor : `${color2}` }}/>
                 </div>
                 </div>
         </div>      
